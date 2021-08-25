@@ -13,7 +13,7 @@ los mismos como un arreglo
 ?>
 <?php
 include_once "../config/base_de_datos.php";
-$sentencia = $base_de_datos->query("select id, titulo, asunto, mensaje from plantilla ");
+$sentencia = $base_de_datos->query("select id_plantilla, titulo, asunto, mensaje from plantilla ");
 $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 ?>
 <!--Recordemos que podemos intercambiar HTML y PHP como queramos-->

@@ -22,18 +22,26 @@
     //Cremos el objeto sparkpost con el api key.
     $sparky = new SparkPost($httpClient,["key" => $key]);
 
-    //Obter id plantilla
-    $id = $_POST['id'];
-
+    
+  //Obter id plantilla
+  $id_plantilla = $_POST['id_plantilla'];
+  $id_campaña = $_POST['id_campaña'];
     
    // Obtenmos la clase config base de datos
    //Base usuarios
         include_once "./config/base_de_datos.php";
-        $sentencia = $base_de_datos->query("select id, nombre, correo from usuarios");
+        $sentencia = $base_de_datos->query("Select campana.id_campana, campana.nombre_campana,plantilla.id_plantilla,
+        plantilla.titulo,plantilla.asunto,plantilla.mensaje,plantilla.documento,
+        usuarios.nombre, usuarios.correo, usuarios.tipo_campana, usuarios.tipo_plantilla
+        From campana, plantilla, usuarios
+        Where campana.id_campana = $id_campaña and plantilla.id_plantilla = $id_plantilla and usuarios.tipo_campana = $id_campaña and usuarios.tipo_plantilla = $id_plantilla");
         $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
+    //Obter id plantilla
+    //$id -> $usuarios->tipo_plantilla;
+
     //Base Plantilla
-        $sentenciap = $base_de_datos->query("select id, titulo ,asunto, mensaje from plantilla  WHERE id = $id ");
-        $plantillaP = $sentenciap->fetchAll(PDO::FETCH_OBJ);
+        //$sentenciap = $base_de_datos->query("select id, titulo ,asunto, mensaje from plantilla  WHERE id = $id ");
+        //$plantillaP = $sentenciap->fetchAll(PDO::FETCH_OBJ);
 
 
                 /*
@@ -61,7 +69,7 @@
 
          
             //Creamos el envio de correos.
-            foreach($plantillaP as $plantilla){
+            foreach($usuarios as $usuario){
             $create = $sparky->transmissions->post([
                 
                 //Sandbox true para pruebas.
@@ -76,11 +84,11 @@
                 'content' => [
         
                     'from' => [
-                        'name' => $plantilla->titulo,
+                        'name' => $usuario->titulo,
                         'email' => 'test@sparkpostbox.com'
                     ],
-                    'subject' => $plantilla->asunto,
-                    'html' => '<html><body><h1>Congratulations, {{name}}!</h1>' .$plantilla->mensaje.'</p></body></html>',
+                    'subject' => $usuario->asunto,
+                    'html' => '<html><body><h1>Congratulations, {{name}}!</h1>' .$usuario->mensaje.'</p></body></html>',
                     'text' => 'Congratulations, {{name}}! You just sent your very first mailing!'
                 ] 
                 
