@@ -242,8 +242,8 @@ $campanas = $sentencia->fetchAll(PDO::FETCH_OBJ);
 						<tr>
 							<td><?php echo $campana->id_campana ?></td>
 							<td><?php echo $campana->nombre_campana ?></td>
-							<td><a class="btn btn-warning" href="<?php echo "editar.php?id=" . $usuario->id_usuario?>">Editar 📝</a></td>
-							<td><a class="btn btn-danger" href="<?php  echo "eliminar.php?id=" . $usuario->id_usuario?>">Eliminar 🗑️</a></td>
+							<td><a class="btn btn-warning" href="<?php echo "editar.php?id=" . $campana->id_usuario?>">Editar 📝</a></td>
+							<td><a class="btn btn-danger" href="<?php  echo "eliminar.php?id=" . $campana->id_usuario?>">Eliminar 🗑️</a></td>
 						</tr>
 					<?php } ?>
 				</tbody>

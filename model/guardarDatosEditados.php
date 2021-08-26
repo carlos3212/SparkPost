@@ -17,7 +17,7 @@ en donde se editan
 if (
     !isset($_POST["nombre"]) ||
     !isset($_POST["correo"]) ||
-    !isset($_POST["id"])
+    !isset($_POST["id_usuario"])
 ) {
     exit();
 }
@@ -25,14 +25,16 @@ if (
 #Si todo va bien, se ejecuta esta parte del código...
 
 include_once "../config/base_de_datos.php";
-$id = $_POST["id"];
+$id = $_POST["id_usuario"];
 $nombre = $_POST["nombre"];
 $correo = $_POST["correo"];
+$campaña = $_POST["id_campaña"];
+$plantilla = $_POST["id_plantilla"];
 
-$sentencia = $base_de_datos->prepare("UPDATE usuarios SET nombre = ?, correo = ? WHERE id = ?;");
+$sentencia = $base_de_datos->prepare("UPDATE usuarios SET nombre = ?, correo = ? , tipo_campana = ?, tipo_plantilla = ?  WHERE id_usuario = ?;");
 $resultado = $sentencia->execute([$nombre, $correo, $id]); # Pasar en el mismo orden de los ?
 if ($resultado === true) {
-    header("Location: http://localhost:8080/sparkpost/view/listar.php");
+    header("Location: http://localhost:8080/sparkpost/datos.php");
 } else {
     echo "Algo salió mal. Por favor verifica que la tabla exista, así como el ID del usuario";
 }
