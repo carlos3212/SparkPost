@@ -217,7 +217,7 @@
 					<!-- Base de datos -->
 					<form action="sparkpost.php" method="POST">
 			<input type="hidden" name="id_plantilla" value="<?php echo $paraPlantilla->id_plantilla; ?>">
-			<input type="hidden" name="id_campaña" value="<?php echo $paraCampaña->id_campaña; ?>">
+            <input type="hidden" name="id_campaña" value="<?php echo $paraCampaña->id_campaña; ?>">
 			
             <div class="form-group">
 				<label for="mensaje"> <h3>  ID Plantilla </h3></label>

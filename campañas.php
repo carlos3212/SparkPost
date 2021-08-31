@@ -211,8 +211,8 @@
 
     <?php
 include_once "./config/base_de_datos.php";
-$sentencia = $base_de_datos->query("select id_campana, nombre_campana from campana");
-$campanas = $sentencia->fetchAll(PDO::FETCH_OBJ);
+$sentenciaC = $base_de_datos->query("select id_campana, nombre_campana from campana");
+$campanas = $sentenciaC->fetchAll(PDO::FETCH_OBJ);
 ?>
 
     <!-- Begin Page Content -->
@@ -222,6 +222,7 @@ $campanas = $sentencia->fetchAll(PDO::FETCH_OBJ);
         <h1>Campañas</h1>
 		
 		<br>
+        <form action="./model/insertarCampaña.php" method="POST">
 		<div class="table-responsive">
 			<table class="table table-bordered">
 				<thead class="thead-dark">
@@ -242,8 +243,8 @@ $campanas = $sentencia->fetchAll(PDO::FETCH_OBJ);
 						<tr>
 							<td><?php echo $campana->id_campana ?></td>
 							<td><?php echo $campana->nombre_campana ?></td>
-							<td><a class="btn btn-warning" href="<?php echo "editar.php?id=" . $campana->id_usuario?>">Editar 📝</a></td>
-							<td><a class="btn btn-danger" href="<?php  echo "eliminar.php?id=" . $campana->id_usuario?>">Eliminar 🗑️</a></td>
+							<td><a class="btn btn-warning" href="<?php echo "editarCampaña.php?id=" . $campana->id_campana?>">Editar 📝</a></td>
+							<td><a class="btn btn-danger" href="<?php  echo "eliminarCampaña.php?id=" . $campana->id_campana?>">Eliminar 🗑️</a></td>
 						</tr>
 					<?php } ?>
 				</tbody>

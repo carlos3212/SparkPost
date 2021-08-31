@@ -17,7 +17,7 @@ en donde se editan
 if (
     !isset($_POST["nombre"]) ||
     !isset($_POST["correo"]) ||
-    !isset($_POST["id_usuario"])
+    !isset($_POST["id"])
 ) {
     exit();
 }
@@ -25,13 +25,12 @@ if (
 #Si todo va bien, se ejecuta esta parte del código...
 
 include_once "../config/base_de_datos.php";
-$id = $_POST["id_usuario"];
+$id = $_POST["id"];
 $nombre = $_POST["nombre"];
 $correo = $_POST["correo"];
-$campaña = $_POST["id_campaña"];
-$plantilla = $_POST["id_plantilla"];
 
-$sentencia = $base_de_datos->prepare("UPDATE usuarios SET nombre = ?, correo = ? , tipo_campana = ?, tipo_plantilla = ?  WHERE id_usuario = ?;");
+
+$sentencia = $base_de_datos->prepare("UPDATE usuarios SET nombre = ?, correo = ?   WHERE id_usuario = ?;");
 $resultado = $sentencia->execute([$nombre, $correo, $id]); # Pasar en el mismo orden de los ?
 if ($resultado === true) {
     header("Location: http://localhost:8080/sparkpost/datos.php");

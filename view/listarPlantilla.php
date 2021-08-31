@@ -13,8 +13,8 @@ los mismos como un arreglo
 ?>
 <?php
 include_once "../config/base_de_datos.php";
-$sentencia = $base_de_datos->query("select id_plantilla, titulo, asunto, mensaje from plantilla ");
-$usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
+$sentenciaP = $base_de_datos->query("select id_plantilla, titulo, asunto, mensaje from plantilla ");
+$plantillas = $sentencia->fetchAll(PDO::FETCH_OBJ);
 ?>
 <!--Recordemos que podemos intercambiar HTML y PHP como queramos-->
 <?php include_once "encabezado.php" ?>
@@ -41,7 +41,7 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 					Atención aquí, sólo esto cambiará
 					Pd: no ignores las llaves de inicio y cierre {}
 					-->
-					<?php foreach($usuarios as $plantilla){ ?>
+					<?php foreach($plantillas as $plantilla){ ?>
 						<tr>
 							<td><?php echo $plantilla->id ?></td>
 							<td><?php echo $plantilla->titulo ?></td>

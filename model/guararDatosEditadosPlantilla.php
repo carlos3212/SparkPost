@@ -33,7 +33,7 @@ $mensaje = $_POST["mensaje"];
 $sentencia = $base_de_datos->prepare("UPDATE plantilla SET titulo = ?, asunto = ? , mensaje = ? WHERE id = ?;");
 $resultado = $sentencia->execute([$titulo, $asunto,$mensaje, $id]); # Pasar en el mismo orden de los ?
 if ($resultado === true) {
-    header("Location: http://localhost:8080/sparkpost/view/listarPlantilla.php");
+    header("Location: http://localhost:8080/sparkpost/Plantilla.php");
 } else {
     echo "Algo salió mal. Por favor verifica que la tabla exista, así como el ID del usuario";
 }

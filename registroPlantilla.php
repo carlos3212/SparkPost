@@ -219,39 +219,23 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1>Usuarios</h1>
-		
-		<br>
-		<div class="table-responsive">
-			<table class="table table-bordered">
-				<thead class="thead-dark">
-					<tr>
-						<th>ID</th>
-						<th>Nombre</th>
-						<th>correo</th>
-						<th>Editar</th>
-						<th>Eliminar</th>
-
-					</tr>
-				</thead>
-				<tbody>
-					<!--
-					Atención aquí, sólo esto cambiará
-					Pd: no ignores las llaves de inicio y cierre {}
-					-->
-					<?php foreach($usuarios as $usuario){ ?>
-						<tr>
-							<td><?php echo $usuario->id_usuario ?></td>
-							<td><?php echo $usuario->nombre ?></td>
-							<td><?php echo $usuario->correo ?></td>
-						
-							<td><a class="btn btn-warning" href="<?php echo "editar.php?id=" . $usuario->id_usuario?>">Editar 📝</a></td>
-							<td><a class="btn btn-danger" href="<?php  echo "eliminar.php?id=" . $usuario->id_usuario?>">Eliminar 🗑️</a></td>
-						</tr>
-					<?php } ?>
-				</tbody>
-			</table>
-		</div>
+        <h1>Agregar</h1>
+		<form action="./model/insertarPlantilla.php" method="POST">
+			<div class="form-group">
+				<label for="titulo">Titulo</label>
+				<input required name="titulo" type="text" id="titulo" placeholder="titulo " class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="mensaje">Asunto</label>
+				<input required name="asunto" type="text" id="asunto" placeholder="Asunto" class="form-control">
+			</div>
+            <div class="form-group">
+				<label for="mensaje">Mensaje</label>
+				<input required name="mensaje" type="text" id="mensaje" placeholder="Mensaje" class="form-control">
+			</div>
+			<button type="submit" class="btn btn-success">Guardar</button>
+			<a href="plantillas.php" class="btn btn-warning">Ver todas</a>
+		</form>
 
     </div>
     <!-- /.container-fluid -->

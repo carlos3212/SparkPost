@@ -1,0 +1,47 @@
+<html lang="es">
+	<head> 
+		<title>ITIC TUTORIALES</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<link rel="stylesheet" href="css/estilos.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	</head>
+	<body>
+		<header>
+			<div class="alert alert-info">
+			<h3>Subir Multiples Archivos al Servidor con AJAX y PHP </h3>
+			</div>
+		</header>
+
+<form action="files.php" method="post" enctype="multipart/form-data" id="filesForm">
+    <div class="col-md-4 col-md-offset-4">
+        <input class="form-control" type="file" name="file[]" multiple>
+        <button type="button" onclick="subir()" class="btn btn-primary form-control" >Cargar</button>
+    </div>
+</form>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+    function subir()
+    {
+
+        var Form = new FormData($('#filesForm')[0]);
+        $.ajax({
+
+            url: "files.php",
+            type: "post",
+            data : Form,
+            processData: false,
+            contentType: false,
+            success: function(data)
+            {
+                alert('Archivos Agregados!');
+            }
+        });
+    }
+
+</script>

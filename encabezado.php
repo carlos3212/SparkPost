@@ -75,17 +75,17 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTre"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Registros</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTre" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Insertar registro:</h6>
                         <a class="collapse-item" href="insertarUsuario.php">Usuarios</a>
-                        <a class="collapse-item" href="cards.html">Plantillas</a>
-                        <a class="collapse-item" href="cards.html">Campañas</a>
+                        <a class="collapse-item" href="registroPlantilla.php">Plantillas</a>
+                        <a class="collapse-item" href="registroCampaña.php">Campañas</a>
                     </div>
                 </div>
             </li>
@@ -95,13 +95,13 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                    <span>Mensajes</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Enviar correo:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Sparkpost</a>
+                        <a class="collapse-item" href="index.php">Sparkpost</a>
                       
                     </div>
                 </div>

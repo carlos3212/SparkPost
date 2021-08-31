@@ -211,7 +211,7 @@
 
     <?php
 include_once "./config/base_de_datos.php";
-$sentencia = $base_de_datos->query("select id_usuario, nombre, correo, tipo_campana, tipo_plantilla from usuarios");
+$sentencia = $base_de_datos->query("select id_usuario, nombre, correo from usuarios");
 $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 ?>
 
@@ -229,14 +229,7 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 				<label for="edad">Correo</label>
 				<input required name="correo" type="text" id="correo" placeholder="Correo" class="form-control">
 			</div>
-            <div class="form-group">
-				<label for="edad">ID Campaña</label>
-				<input required name="id_campaña" type="text" id="id_campaña" placeholder="id_campaña" class="form-control">
-			</div>
-            <div class="form-group">
-				<label for="edad">ID Plantilla</label>
-				<input required name="id_plantilla" type="text" id="id_plantilla" placeholder="id_plantilla" class="form-control">
-			</div>
+           
 			<button type="submit" class="btn btn-success">Guardar</button>
 			<a href="./listar.php" class="btn btn-warning">Ver todas</a>
 		</form>

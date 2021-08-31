@@ -211,8 +211,8 @@
 
     <?php
 include_once "./config/base_de_datos.php";
-$sentencia = $base_de_datos->query("select id_plantilla, titulo, asunto, mensaje from plantilla ");
-$usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
+$sentenciaP = $base_de_datos->query("select id_plantilla, titulo, asunto, mensaje from plantilla ");
+$plantillas = $sentenciaP->fetchAll(PDO::FETCH_OBJ);
 ?>
 
     <!-- Begin Page Content -->
@@ -239,14 +239,14 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 					Atención aquí, sólo esto cambiará
 					Pd: no ignores las llaves de inicio y cierre {}
 					-->
-					<?php foreach($usuarios as $plantilla){ ?>
+					<?php foreach($plantillas as $plantilla){ ?>
 						<tr>
 							<td><?php echo $plantilla->id_plantilla ?></td>
 							<td><?php echo $plantilla->titulo ?></td>
 							<td><?php echo $plantilla->asunto ?></td>
 							<td><?php echo $plantilla->mensaje ?></td>
-							<td><a class="btn btn-warning" href="<?php echo "editarPlantilla.php?id=" . $plantilla->id?>">Editar 📝</a></td>
-							<td><a class="btn btn-danger" href="<?php  echo "eliminarPlantilla.php?id=" . $plantilla->id?>">Eliminar 🗑️</a></td>
+							<td><a class="btn btn-warning" href="<?php echo "editarPlantilla.php?id=" . $plantilla->id_plantilla?>">Editar 📝</a></td>
+							<td><a class="btn btn-danger" href="<?php  echo "eliminarPlantilla.php?id=" . $plantilla->id_plantilla?>">Eliminar 🗑️</a></td>
 						</tr>
 					<?php } ?>
 				</tbody>

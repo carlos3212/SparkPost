@@ -211,48 +211,27 @@
 
     <?php
 include_once "./config/base_de_datos.php";
-$sentencia = $base_de_datos->query("select id_usuario, nombre, correo from usuarios");
-$usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
+$sentencia = $base_de_datos->query("select id_campana, nombre_campana from campana");
+$campanas = $sentencia->fetchAll(PDO::FETCH_OBJ);
 ?>
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1>Usuarios</h1>
-		
-		<br>
-		<div class="table-responsive">
-			<table class="table table-bordered">
-				<thead class="thead-dark">
-					<tr>
-						<th>ID</th>
-						<th>Nombre</th>
-						<th>correo</th>
-						<th>Editar</th>
-						<th>Eliminar</th>
+        <h1>Agregar</h1>
+		<form action="./model/insertarCampaña.php" method="POST">
+			<div class="form-group">
+				<label for="titulo">Nombre Campaña</label>
+				<input required name="nombre_campana" type="text" id="nombre_campana" placeholder="nombre_campana " class="form-control">
+			</div>
+			
+           
+			<button type="submit" class="btn btn-success">Guardar</button>
+			<a href="campañas.php" class="btn btn-warning">Ver todas</a>
+		</form>
 
-					</tr>
-				</thead>
-				<tbody>
-					<!--
-					Atención aquí, sólo esto cambiará
-					Pd: no ignores las llaves de inicio y cierre {}
-					-->
-					<?php foreach($usuarios as $usuario){ ?>
-						<tr>
-							<td><?php echo $usuario->id_usuario ?></td>
-							<td><?php echo $usuario->nombre ?></td>
-							<td><?php echo $usuario->correo ?></td>
-						
-							<td><a class="btn btn-warning" href="<?php echo "editar.php?id=" . $usuario->id_usuario?>">Editar 📝</a></td>
-							<td><a class="btn btn-danger" href="<?php  echo "eliminar.php?id=" . $usuario->id_usuario?>">Eliminar 🗑️</a></td>
-						</tr>
-					<?php } ?>
-				</tbody>
-			</table>
-		</div>
-
+    </div>
     </div>
     <!-- /.container-fluid -->
 
