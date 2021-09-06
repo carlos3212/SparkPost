@@ -1,3 +1,12 @@
+<?php 
+   include_once './seguridad.php'
+
+?>
+<?php if ($_SESSION['rol']==2)
+session_unset();
+session_destroy();
+?>
+
 <?php
 
 

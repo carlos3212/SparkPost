@@ -1,15 +1,8 @@
+ 
 <?php
-/*
-CRUD con PostgreSQL y PHP
-@author parzibyte [parzibyte.me/blog]
-@date 2019-06-17
-
-================================
-Este archivo elimina un dato por ID sin
-pedir confirmación. El ID viene de la URL
-================================
-*/
-if (!isset($_GET["id"])) {
+ include_once './seguridad.php';
+ 
+if (!isset($_GET["id"]) && ($_SESSION['rol'] )) {
     exit();
 }
 
