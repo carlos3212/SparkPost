@@ -104,6 +104,7 @@
                 echo $response->getStatusCode()."\n";
                 print_r($response->getBody())."\n";
                 print("MENSAJE ENVIADO CON EXITO")."\n";
+                header("Location: envioMensaje.php");
 
             } catch (\Exception $e) {
                 print("Error");

@@ -1,32 +1,60 @@
-<?php include_once "encabezado.php" ?>
-<!-- Content Wrapper -->
-    
+
+
+<?php include_once "encabezado_usuario.php";
+ include_once './seguridad.php';
+
+ ?>
+ <?php  if ($_SESSION['rol']==1)
+ session_unset();
+ session_destroy();
+ ?>
+
     <!-- End of Topbar -->
 
     <?php
 include_once "./config/base_de_datos.php";
-$sentencia = $base_de_datos->query("select id_usuario, nombre, correo from usuarios");
-$usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
+$sentenciaP = $base_de_datos->query("select id_plantilla, titulo, asunto, mensaje from plantilla ");
+$plantillas = $sentenciaP->fetchAll(PDO::FETCH_OBJ);
 ?>
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1>Agregar</h1>
-		<form action="./model/insertar.php" method="POST">
-			<div class="form-group">
-				<label for="nombre">Nombre</label>
-				<input required name="nombre" type="text" id="nombre" placeholder="Nombre de Usuario" class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="edad">Correo</label>
-				<input required name="correo" type="text" id="correo" placeholder="Correo" class="form-control">
-			</div>
-           
-			<button type="submit" class="btn btn-success">Guardar</button>
-			<a href="./listar.php" class="btn btn-warning">Ver todas</a>
-		</form>
+        <h1>Plantillas</h1>
+		
+		<br>
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<thead class="thead-dark">
+					<tr>
+						<th>ID</th>
+						<th>Titulo</th>
+						<th>Asunto</th>
+						<th>Mensaje</th>
+						<th>Editar</th>
+						<th>Eliminar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--
+					Atención aquí, sólo esto cambiará
+					Pd: no ignores las llaves de inicio y cierre {}
+					-->
+					<?php foreach($plantillas as $plantilla){ ?>
+						<tr>
+							<td><?php echo $plantilla->id_plantilla ?></td>
+							<td><?php echo $plantilla->titulo ?></td>
+							<td><?php echo $plantilla->asunto ?></td>
+							<td><?php echo $plantilla->mensaje ?></td>
+							<td><a class="btn btn-warning" href="<?php echo "editarPlantilla.php?id=" . $plantilla->id_plantilla?>">Editar 📝</a></td>
+							<td><a class="btn btn-danger" href="<?php  echo "eliminarPlantilla.php?id=" . $plantilla->id_plantilla?>">Eliminar 🗑️</a></td>
+						</tr>
+					<?php } ?>
+				</tbody>
+			</table>
+		</div>
+        
 
     </div>
     <!-- /.container-fluid -->

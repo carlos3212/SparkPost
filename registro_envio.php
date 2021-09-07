@@ -5,8 +5,8 @@
 
     <?php
 include_once "./config/base_de_datos.php";
-$sentencia = $base_de_datos->query("select id_usuario, nombre, correo from usuarios");
-$usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
+$sentenciae = $base_de_datos->query("select tipo_campana, tipo_plantilla from envio");
+$envio = $sentenciae->fetchAll(PDO::FETCH_OBJ);
 ?>
 
     <!-- Begin Page Content -->
@@ -14,14 +14,14 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 
         <!-- Page Heading -->
         <h1>Agregar</h1>
-		<form action="./model/insertar.php" method="POST">
+		<form action="./model/insertar_envio.php" method="POST">
 			<div class="form-group">
-				<label for="nombre">Nombre</label>
-				<input required name="nombre" type="text" id="nombre" placeholder="Nombre de Usuario" class="form-control">
+				<label for="tipo_campana">Tipo Campaña</label>
+				<input required name="tipo_campana" type="text" id="tipo_campana" placeholder="tipo_campana" class="form-control">
 			</div>
 			<div class="form-group">
-				<label for="edad">Correo</label>
-				<input required name="correo" type="text" id="correo" placeholder="Correo" class="form-control">
+				<label for="tipo_plantilla">Tipo PLantilla</label>
+				<input required name="tipo_plantilla" type="text" id="tipo_plantilla" placeholder="tipo_plantilla" class="form-control">
 			</div>
            
 			<button type="submit" class="btn btn-success">Guardar</button>

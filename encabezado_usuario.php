@@ -2,7 +2,7 @@
 // include_once './seguridad.php';
 
  ?>
- <?php // if ($_SESSION['rol']==2)
+ <?php // if ($_SESSION['rol']==1)
  //session_unset();
  //session_destroy();
  ?>
@@ -44,7 +44,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Sidebox <sup>ADMIN</sup</div>
+                <div class="sidebar-brand-text mx-3">Sidebox <sup>USER</sup</div>
             </a>
 
             <!-- Divider -->
@@ -65,10 +65,9 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Ver registro:</h6>
-                        <a class="collapse-item" href="datos.php">Usuarios</a>
-                        <a class="collapse-item" href="plantillas.php">Plantillas</a>
-                        <a class="collapse-item" href="campañas.php">Campañas</a>
-                        <a class="collapse-item" href="datos_envio.php">Envio</a>
+                        <a class="collapse-item" href="rol_usuario.php">Usuarios</a>
+                        <a class="collapse-item" href="plantillas_usuario.php">Plantillas</a>
+                        <a class="collapse-item" href="campañas_usuario.php">Campañas</a>
                     </div>
                 </div>
             </li>
@@ -92,11 +91,7 @@
                 </a>
                 <div id="collapseTre" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Insertar registro:</h6>
-                        <a class="collapse-item" href="insertarUsuario.php">Usuarios</a>
-                        <a class="collapse-item" href="registroPlantilla.php">Plantillas</a>
-                        <a class="collapse-item" href="registroCampaña.php">Campañas</a>
-                        <a class="collapse-item" href="registro_envio.php">Envio</a>
+                       
                     </div>
                 </div>
             </li>
@@ -112,7 +107,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Enviar correo:</h6>
-                        <a class="collapse-item" href="envioMensaje.php">Sparkpost</a>
+                        <a class="collapse-item" href="enviarMensaje_usuario.php    ">Sparkpost</a>
                       
                     </div>
                 </div>
@@ -354,7 +349,7 @@
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">  </span>
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">  <?php echo $_SESSION['usuario'];?></span>
                     <img class="img-profile rounded-circle"
                         src="img/undraw_profile.svg">
                 </a>
