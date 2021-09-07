@@ -1,11 +1,11 @@
   
 <?php include_once "encabezado_usuario.php  ";
- include_once './seguridad.php';
+ //include_once './seguridad.php';
 
  ?>
- <?php  if ($_SESSION['rol']==1)
+ <?php  /*if ($_SESSION['rol']==1)
  session_unset();
- session_destroy();
+ session_destroy();*/
  ?>
 
     <!-- End of Topbar -->

@@ -26,6 +26,7 @@
   //Obter id plantilla
   $id_plantilla = $_POST['id_plantilla'];
   $id_campaña = $_POST['id_campaña'];
+  $id_fecha = $_POST['id_fecha'];
     
    // Obtenmos la clase config base de datos
    //Base usuarios
@@ -34,8 +35,8 @@
         plantilla.titulo,plantilla.asunto,plantilla.mensaje,plantilla.documento,
         usuarios.nombre, usuarios.correo, envio.id_envio, envio.tipo_campana, envio.tipo_plantilla
         From campana, plantilla, usuarios, envio
-        Where campana.id_campana = 1 and plantilla.id_plantilla = 1 and envio.tipo_campana = 1 and envio.tipo_plantilla = 1 ");
-        $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);   
+        Where campana.id_campana = $id_campaña and plantilla.id_plantilla = $id_plantilla and envio.tipo_campana = $id_campaña and envio.tipo_plantilla = $id_plantilla ");
+        $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);  
     //Obter id plantilla
     //$id -> $usuarios->tipo_plantilla;
 
@@ -77,7 +78,7 @@
                     'open_tracking' => true,
                     'click_tracking' => true,
                     'sandbox' => true,
-                    "start_time" => "2021-09-01T11:00:00-05:00"
+                    "start_time" => " $id_fecha"
                 ],
                 'recipients' => $correos_masivos,
                 //From -> email test@sparkpostbox.com para pruebas

@@ -29,7 +29,7 @@ foreach($login as $login ){
         $_SESSION['email']= $login -> email ;
         $_SESSION['rol']= $login -> rol ;
         $_SESSION['tiempo']=time();
-        header("Location: .php");
+        header("Location: rol_usuario.php");
     }
     if($login === false){
         header("Location: index.php");

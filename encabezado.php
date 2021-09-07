@@ -68,7 +68,8 @@
                         <a class="collapse-item" href="datos.php">Usuarios</a>
                         <a class="collapse-item" href="plantillas.php">Plantillas</a>
                         <a class="collapse-item" href="campañas.php">Campañas</a>
-                        <a class="collapse-item" href="datos_envio.php">Envio</a>
+                        <a class="collapse-item" href="datos_envio.php">Envio </a>
+                        
                     </div>
                 </div>
             </li>
@@ -113,6 +114,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Enviar correo:</h6>
                         <a class="collapse-item" href="envioMensaje.php">Sparkpost</a>
+                        <a class="collapse-item" href="envioMensajeProgramado.php">Sparkpost Progrmado</a>
                       
                     </div>
                 </div>
