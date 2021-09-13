@@ -7,27 +7,36 @@
 
                     <!-- Page Heading -->
 					<!-- Base de datos -->
-					<form action="sparkpost.php" method="POST">
-			<input type="hidden" name="id_plantilla" value="<?php echo $paraPlantilla->id_plantilla; ?>">
-            <input type="hidden" name="id_campaña" value="<?php echo $paraCampaña->id_campaña; ?>">
-			
-            <div class="form-group">
-				<label for="mensaje"> <h3>  ID Plantilla </h3></label>
-				<input required name="id_plantilla" type="text" id="id_plantilla" placeholder="Id" class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="mensaje"> <h3>  ID Campaña </h3></label>
-				<input required name="id_campaña" type="text" id="id_campaña" placeholder="Id" class="form-control">
-			</div>
+					<form action="ver_envio.php" method="POST">
+                    
+			<input type="hidden" name="id_envio" value="<?php echo $paraPlantilla->id_envio; ?>">
+           
+         	<div class="form-group">
+				<label for="mensaje"> <h3>  ID Envio </h3></label>
+                <select name="id_envio" id = "id_envio" class="form-control"> 
+<?php
+
+include_once './config/base_de_datos.php';
+$query = "select id_envio,tipo_plantilla, tipo_campana from envio";
+    $data = $base_de_datos->prepare($query);    // Prepare query for execution
+    $data->execute();// Execute (run) the query
+
+    while($row=$data->fetch(PDO::FETCH_ASSOC)){
+        echo '<option value="'.$row['id_envio'].'">'.$row['id_envio'].'</option>';
+        //print_r($row); 
+    }
+    
+?>
+ </select>	
+            </div>
+           
 			<button type="submit" class="btn btn-success">ENVIAR</button>
-					
-
-      
-
-
-
-                </div>
+            
+                    
+             </div>
+             
                 <!-- /.container-fluid -->
+              
 
             </div>
             <!-- End of Main Content -->

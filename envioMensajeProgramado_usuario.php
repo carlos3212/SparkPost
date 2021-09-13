@@ -1,4 +1,4 @@
-<?php include_once "encabezado_usuario.php.php" ?>
+<?php include_once "encabezado_usuario.php" ?>
 
                   <!-- End of Topbar -->
 

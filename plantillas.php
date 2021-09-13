@@ -13,7 +13,7 @@
 
     <?php
 include_once "./config/base_de_datos.php";
-$sentenciaP = $base_de_datos->query("select id_plantilla, titulo, asunto, mensaje from plantilla ");
+$sentenciaP = $base_de_datos->query("select id_plantilla, titulo, asunto, mensaje, documento from plantilla ");
 $plantillas = $sentenciaP->fetchAll(PDO::FETCH_OBJ);
 ?>
 
@@ -32,6 +32,7 @@ $plantillas = $sentenciaP->fetchAll(PDO::FETCH_OBJ);
 						<th>Titulo</th>
 						<th>Asunto</th>
 						<th>Mensaje</th>
+                        <th>Documento</th>
 						<th>Editar</th>
 						<th>Eliminar</th>
 					</tr>
@@ -47,6 +48,7 @@ $plantillas = $sentenciaP->fetchAll(PDO::FETCH_OBJ);
 							<td><?php echo $plantilla->titulo ?></td>
 							<td><?php echo $plantilla->asunto ?></td>
 							<td><?php echo $plantilla->mensaje ?></td>
+							<td><?php echo $plantilla->documento ?></td>
 							<td><a class="btn btn-warning" href="<?php echo "editarPlantilla.php?id=" . $plantilla->id_plantilla?>">Editar 📝</a></td>
 							<td><a class="btn btn-danger" href="<?php  echo "eliminarPlantilla.php?id=" . $plantilla->id_plantilla?>">Eliminar 🗑️</a></td>
 						</tr>

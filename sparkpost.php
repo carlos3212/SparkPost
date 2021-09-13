@@ -8,7 +8,7 @@
     use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
 
     //Api key.
-    $key = "e83b136e012b0e962717f3885a5cd570b81e55b7";
+    $key = "2cdeb2d665123cd6178cb0df9cb52b5f494fd8be";
 
     //Para envio de correos con template.
     $template_id = "test_template";
@@ -24,8 +24,10 @@
 
     
   //Obter id plantilla
-  $id_plantilla = $_POST['id_plantilla'];
-  $id_campaña = $_POST['id_campaña'];
+  $tipo_campana=($_GET['tipo_campana']);
+  $tipo_plantilla=($_GET['tipo_plantilla']);
+
+  
     
    // Obtenmos la clase config base de datos
    //Base usuarios
@@ -34,7 +36,7 @@
         plantilla.titulo,plantilla.asunto,plantilla.mensaje,plantilla.documento,
         usuarios.nombre, usuarios.correo, envio.id_envio, envio.tipo_campana, envio.tipo_plantilla
         From campana, plantilla, usuarios, envio
-        Where campana.id_campana = $id_campaña and plantilla.id_plantilla = $id_plantilla and envio.tipo_campana = $id_campaña and envio.tipo_plantilla = $id_plantilla ");
+        Where campana.id_campana = $tipo_campana and plantilla.id_plantilla = $tipo_plantilla and envio.tipo_campana = $tipo_campana and envio.tipo_plantilla = $tipo_plantilla ");
         $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);   
     //Obter id plantilla
     //$id -> $usuarios->tipo_plantilla;
@@ -88,7 +90,7 @@
                         'email' => 'test@sparkpostbox.com'
                     ],
                     'subject' => $usuario->asunto,
-                    'html' => '<html><body><h1>Congratulations, {{name}}!</h1>' .$usuario->mensaje.'</p></body></html>',
+                    'html' => '<html><body>' .$usuario->mensaje.'</p> <p>'.$usuario->documento.'</p></body></html>',
                     'text' => 'Congratulations, {{name}}! You just sent your very first mailing!'
                 ] 
                 
@@ -103,7 +105,7 @@
                 $response = $create->wait();
                 echo $response->getStatusCode()."\n";
                 print_r($response->getBody())."\n";
-                print("MENSAJE ENVIADO CON EXITO")."\n";
+                echo("MENSAJE ENVIADO CON EXITO")."\n";
                 header("Location: envioMensaje.php");
 
             } catch (\Exception $e) {

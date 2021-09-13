@@ -1,5 +1,5 @@
   
-<?php include_once "encabezado_usuario.php  ";
+<?php include_once "encabezado_usuario.php";
  //include_once './seguridad.php';
 
  ?>
