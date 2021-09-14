@@ -1,24 +1,26 @@
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-<title>Página de envío</title> 
-</head>
-<body>
-<h1>Envío de variables a otra página.</h1>
-<?php  
-$a="Hola, ";
-$b="bienvenido a mi página";
-echo "Enviar las siguientes variables:<br/>";
-echo "\$a = $a <br/>";
-echo "\$b = $b <br/>";
+<?php
+include_once'config/base_de_datos.php';
+    $archivo = fopen( "spark.csv", "rb" );
+    // Leer la primera línea:
+     $aDatos = fgetcsv( $archivo, 100, ",");
+    //print_r( $aDatos );
+    echo "<br />";
+    // Tras la lectura anterior, el puntero ha quedado en la segunda línea:
+     $aDatos = fgetcsv( $archivo, 100, "," );
+    //print( $aDatos );
+    echo "<br />-------------------------------------<p />";
+    // Volvemos a situar el puntero al principio del archivo:
+    fseek($archivo, 0);
+    // Recorremos el archivo completo:
+     while( feof($archivo) == false )
+     {
+         $aDatos = fgetcsv( $archivo, 100, ",");
+        echo "Nombre: ".$aDatos[0]."<br />";
+        echo "Correo: ".$aDatos[1]."<br />";
+        echo "--------------------------<br />";
+        $sentencia = $base_de_datos->prepare("INSERT INTO usuarios (nombre, correo) VALUES (?, ?)");
+        $resultado = $sentencia->execute([$aDatos[0], $aDatos[1]]); # Pasar en el mismo orden de los ?
+        
+    }
+    fclose( $archivo );
 ?>
-<p>Pulsar el siguiente enlace</p>
-<?php  
-echo "<a href='destino.php?a=$a&b=$b'>Enviar variables</a>";
-?>
-</body>
-</html>
-
