@@ -11,7 +11,7 @@
     <!-- End of Topbar -->
    
     <?php
-include_once "./config/base_de_datos.php";
+include_once "config/base_de_datos.php";
 $sentenciae = $base_de_datos->query("Select  envio.id_envio, campana.nombre_campana,
 plantilla.titulo,
  envio.tipo_campana, envio.tipo_plantilla

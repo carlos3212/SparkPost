@@ -13,9 +13,49 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
     <div class="container-fluid">
 
         <!-- Page Heading -->
+        <h1>Cargar</h1>
+        <div class="row">
+  <div class="col-md-12 offset-md-3">
+  <form action="files.php" method="post" enctype="multipart/form-data" id="filesForm">
+    <div class="col-md-4 col-md-offset-4">
+        <input class="form-control" type="file" id="file" name="file[]" multiple>
+        <button type="button" onclick="subir()" class="btn btn-primary form-control" >Cargar</button>
+    </div>
+</form>
+  </div>
+</div>
         <h1>Agregar</h1>
-		<form action="./model/insertar.php" method="POST">
-			<div class="form-group">
+        <form action="insertCSV.php" method="POST">
+                    
+                    <input type="hidden" name="nombre" value="<?php echo $paraPlantilla->nombre; ?>">
+                   
+                     <div class="form-group">
+                       
+                        <select name="nombre" id = "nombre" class="form-control"> 
+        <?php
+        
+        include_once './config/base_de_datos.php';
+        $query = "select id, nombre from cargarcsv";
+            $data = $base_de_datos->prepare($query);    // Prepare query for execution
+            $data->execute();// Execute (run) the query
+        
+            while($row=$data->fetch(PDO::FETCH_ASSOC)){
+                echo '<option value="'.$row['nombre'].'">'.$row['nombre'].'</option>';
+                //print_r($row); 
+            }
+            
+        ?>
+         </select>	
+                    </div>
+                   
+                    <button type="submit" class="btn btn-success">ENVIAR</button>
+                    
+                            
+                     </div>
+		
+            <!--FOrmulario de registro-->
+			<!--<form action="./model/insertar.php" method="POST"> 
+                <div class="form-group">
 				<label for="nombre">Nombre</label>
 				<input required name="nombre" type="text" id="nombre" placeholder="Nombre de Usuario" class="form-control">
 			</div>
@@ -25,13 +65,45 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 			</div>
            
 			<button type="submit" class="btn btn-success">Guardar</button>
-			<a href="./listar.php" class="btn btn-warning">Ver todas</a>
-		</form>
+			<a href="./listar.php" class="btn btn-warning">Ver todas</a> -->
+            
+                         
+        
 
+        
     </div>
+    
+   
     <!-- /.container-fluid -->
+    
+<script type="text/javascript">
+
+    function subir()
+    {
+
+        var Form = new FormData($('#filesForm')[0]);
+        $.ajax({
+
+            url: "files.php",
+            type: "post",
+            data : Form,
+            processData: false,
+            contentType: false,
+            success: function(data)
+            {
+              
+                alert('Archivos Agregados!');
+              
+
+            }
+        });
+    }
+
+</script>
+
 
 </div>
+
 <!-- End of Main Content -->
 
 <!-- Footer -->
