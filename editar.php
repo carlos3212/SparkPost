@@ -2,7 +2,7 @@
    include_once './seguridad.php'
 
 ?>
-<?php if ($_SESSION['rol']==2)
+<?php if ($_SESSION['rol']==1)
 session_unset();
 session_destroy();
 ?>

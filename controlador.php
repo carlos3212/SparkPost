@@ -1,20 +1,25 @@
-
-
 <?php
+
+
 $email = $_POST['email'];
 $pass = $_POST['pass'];
 
 
+
 include_once "./conexion.php";
-$sentencial = $base_de_datos->query("select email, password, rol, usuario from login
+$sentencialog = $base_de_datos->query("select email, password, rol, usuario from registro
 Where email = '$email' and password = '$pass' ");
-$login = $sentencial->fetchAll(PDO::FETCH_OBJ);
+
+    
+
+$login = $sentencialog->fetchAll(PDO::FETCH_OBJ);
+
 
 foreach($login as $login ){ 
 
+   
     
-    
-    if ($login -> email ===  $email && $login-> rol == 1){
+    if ($login -> email ===  $email || $login-> rol == 1){
         session_start();
         $_SESSION['email']= $login -> email ;
         $_SESSION['rol']= $login -> rol ;

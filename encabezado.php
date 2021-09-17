@@ -64,8 +64,9 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Ver registro:</h6>
-                        <a class="collapse-item" href="datos.php">Usuarios</a>
+                        <h6 class="collapse-header">Ver registro:</h6>  
+                        <a class="collapse-item" href="datos_login.php">Usuarios</a>
+                        <a class="collapse-item" href="datos.php">Correos</a>
                         <a class="collapse-item" href="plantillas.php">Plantillas</a>
                         <a class="collapse-item" href="campañas.php">Campañas</a>
                         <a class="collapse-item" href="datos_envio.php">Envio </a>
@@ -94,7 +95,8 @@
                 <div id="collapseTre" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Insertar registro:</h6>
-                        <a class="collapse-item" href="insertarUsuario.php">Usuarios</a>
+                        <a class="collapse-item" href="insertarLogin.php">Usuarios</a>
+                        <a class="collapse-item" href="insertarUsuario.php">Correos</a>
                         <a class="collapse-item" href="registroPlantilla.php">Plantillas</a>
                         <a class="collapse-item" href="registroCampaña.php">Campañas</a>
                         <a class="collapse-item" href="registro_envio.php">Envio</a>

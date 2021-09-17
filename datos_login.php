@@ -3,7 +3,7 @@
  include_once './seguridad.php';
 
  ?>
- <?//php  if ($_SESSION['rol']==2)
+ <?php  //if ($_SESSION['rol']==2)
  //session_unset();
  //session_destroy();
  ?>
@@ -11,14 +11,9 @@
     <!-- End of Topbar -->
    
     <?php
-include_once "config/base_de_datos.php";
-	$sentenciae = $base_de_datos->query("Select  envio.id_envio, campana.nombre_campana,
-	plantilla.titulo,
-	envio.tipo_campana, envio.tipo_plantilla
-	From campana, plantilla, usuarios, envio
-	Where campana.id_campana = envio.tipo_campana  and plantilla.id_plantilla = envio.tipo_plantilla 
-");
-$envios = $sentenciae->fetchAll(PDO::FETCH_OBJ);
+include_once "./config/base_de_datos.php";
+$sentencial = $base_de_datos->query("select id, email, password, rol, usuario from registro");
+$logins = $sentencial->fetchAll(PDO::FETCH_OBJ);
 ?>
 
 
@@ -26,7 +21,7 @@ $envios = $sentenciae->fetchAll(PDO::FETCH_OBJ);
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1>Envios</h1>
+        <h1>Usuarios</h1>
     
 
 		
@@ -35,12 +30,12 @@ $envios = $sentenciae->fetchAll(PDO::FETCH_OBJ);
 			<table class="table table-bordered">
 				<thead class="thead-dark">
 					<tr>
-						<th>ID_envio</th>
-                        <th>Nombre Campaña</th>
-                        <th>Titulo Plantilla</th>
-						<th>ID Campaña</th>
-						<th>ID PLantilla</th>
-						<th>Editar</th>
+						<th>ID</th>
+						<th>Email</th>
+						<th>Password</th>
+						<th>Rol</th>
+						<th>Usuario</th>
+                        <th>Editar</th>
 						<th>Eliminar</th>
 
 					</tr>
@@ -50,16 +45,16 @@ $envios = $sentenciae->fetchAll(PDO::FETCH_OBJ);
 					Atención aquí, sólo esto cambiará
 					Pd: no ignores las llaves de inicio y cierre {}
 					-->
-					<?php foreach($envios as $envio){ ?>
+					<?php foreach($logins as $login){ ?>
 						<tr>
-							<td><?php echo $envio->id_envio ?></td>
-                            <td><?php echo $envio->nombre_campana ?></td>
-							<td><?php echo $envio->titulo ?></td>
-							<td><?php echo $envio->tipo_campana ?></td>
-							<td><?php echo $envio->tipo_plantilla ?></td>
+							<td><?php echo $login->id ?></td>
+							<td><?php echo $login->email ?></td>
+							<td><?php echo $login->password ?></td>
+                            <td><?php echo $login->rol ?></td>
+                            <td><?php echo $login->usuario ?></td>
 						
-							<td><a class="btn btn-warning" href="<?php echo "editar.php?id=" . $envio->id_envio?>">Editar 📝</a></td>
-							<td><a class="btn btn-danger" href="<?php  echo "eliminarEnvio.php?id=" . $envio->id_envio?>">Eliminar 🗑️</a></td>
+							<td><a class="btn btn-warning" href="<?php echo "editar.php?id=" . $login->id?>">Editar 📝</a></td>
+							<td><a class="btn btn-danger" href="<?php  echo "eliminarLogin.php?id=" . $login->id?>">Eliminar 🗑️</a></td>
 						</tr>
 					<?php } ?>
 				</tbody>
