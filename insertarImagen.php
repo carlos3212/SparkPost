@@ -1,12 +1,19 @@
 <?php include_once "encabezado.php" ?>
-
+<!-- Content Wrapper -->
+    
     <!-- End of Topbar -->
 
-   
+    <?php
+include_once "./config/base_de_datos.php";
+$sentencia = $base_de_datos->query("select id_usuario, nombre, correo from usuarios");
+$usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
+?>
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
-    <h1>Cargar</h1>
+
+        <!-- Page Heading -->
+        <h1>Cargar</h1>
         <div class="row">
   <div class="col-md-12 offset-md-3">
   <form action="files.php" method="post" enctype="multipart/form-data" id="filesForm">
@@ -17,30 +24,9 @@
 </form>
   </div>
 </div>
-
-        <!-- Page Heading -->
         <h1>Agregar</h1>
-		<form action="./model/insertarPlantilla.php" method="POST">
-         <!-- form-group -->
-			<div class="form-group">
-				<label for="titulo">Titulo</label>
-				<input required name="titulo" type="text" id="titulo" placeholder="titulo " class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="mensaje">Asunto</label>
-				<input required name="asunto" type="text" id="asunto" placeholder="Asunto" class="form-control">
-			</div>
-            <div class="form-group">
-				<label for="mensaje">Mensaje</label>
-				<textarea required name="mensaje" type="text" id="mensaje" placeholder="Mensaje" class="form-control"></textarea>
-			</div>
-            <!--IMagen
-            <div class="form-group">
-				<label for="documento">Documento</label>
-				<input required name="documento" type="text" id="documento" placeholder="documento" class="form-control">
-			</div>-->
-            <label for="documento">Documento</label>
-                                
+        <form action="insertIMG.php" method="POST">
+                    
                     <input type="hidden" name="nombre" value="<?php echo $paraPlantilla->nombre; ?>">
                    
                      <div class="form-group">
@@ -60,19 +46,64 @@
             
         ?>
          </select>	
-                 
+                    </div>
                    
-            <!-- form-group -->
-            </div>
-			
+                    <button type="submit" class="btn btn-success">ENVIAR</button>
+                    
+                            
+                     </div>
+		
+            <!--FOrmulario de registro-->
+			<!--<form action="./model/insertar.php" method="POST"> 
+                <div class="form-group">
+				<label for="nombre">Nombre</label>
+				<input required name="nombre" type="text" id="nombre" placeholder="Nombre de Usuario" class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="edad">Correo</label>
+				<input required name="correo" type="text" id="correo" placeholder="Correo" class="form-control">
+			</div>
+           
 			<button type="submit" class="btn btn-success">Guardar</button>
-			<a href="plantillas.php" class="btn btn-warning">Ver todas</a>
-		</form>
+			<a href="./listar.php" class="btn btn-warning">Ver todas</a> -->
+            
+                         
+        
 
+        
     </div>
+    
+   
     <!-- /.container-fluid -->
+    
+<script type="text/javascript">
+
+    function subir()
+    {
+
+        var Form = new FormData($('#filesForm')[0]);
+        $.ajax({
+
+            url: "files.php",
+            type: "post",
+            data : Form,
+            processData: false,
+            contentType: false,
+            success: function(data)
+            {
+              
+                alert('Archivos Agregados!');
+              
+
+            }
+        });
+    }
+
+</script>
+
 
 </div>
+
 <!-- End of Main Content -->
 
 <!-- Footer -->
@@ -125,30 +156,7 @@ aria-hidden="true">
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
-<script type="text/javascript">
 
-    function subir()
-    {
-
-        var Form = new FormData($('#filesForm')[0]);
-        $.ajax({
-
-            url: "files.php",
-            type: "post",
-            data : Form,
-            processData: false,
-            contentType: false,
-            success: function(data)
-            {
-              
-                alert('Archivos Agregados!');
-              
-
-            }
-        });
-    }
-
-</script>
 </body>
 
 </html>

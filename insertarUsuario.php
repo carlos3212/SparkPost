@@ -13,7 +13,7 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1>Cargar</h1>
+        <h1> Cargar Contacto </h1>
         <div class="row">
   <div class="col-md-12 offset-md-3">
   <form action="files.php" method="post" enctype="multipart/form-data" id="filesForm">
@@ -24,7 +24,7 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 </form>
   </div>
 </div>
-        <h1>Agregar</h1>
+        <h1>Agregar Contacto</h1>
         <form action="insertCSV.php" method="POST">
                     
                     <input type="hidden" name="nombre" value="<?php echo $paraPlantilla->nombre; ?>">
@@ -48,7 +48,7 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
          </select>	
                     </div>
                    
-                    <button type="submit" class="btn btn-success">ENVIAR</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
                     
                             
                      </div>

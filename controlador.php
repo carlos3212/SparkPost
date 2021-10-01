@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php
 
 
@@ -9,39 +10,43 @@ $pass = $_POST['pass'];
 include_once "./conexion.php";
 $sentencialog = $base_de_datos->query("select email, password, rol, usuario from registro
 Where email = '$email' and password = '$pass' ");
-
-    
-
 $login = $sentencialog->fetchAll(PDO::FETCH_OBJ);
 
-
 foreach($login as $login ){ 
+if ($login -> email ===  $email && $login-> password  === $pass && $login-> rol == 1) 
+{ 
+// Creamos la variable de sesion que nos permitira el acceso a las demas paginas
 
-   
-    
-    if ($login -> email ===  $email || $login-> rol == 1){
-        session_start();
-        $_SESSION['email']= $login -> email ;
-        $_SESSION['rol']= $login -> rol ;
-        $_SESSION['usuario']= $login -> usuario ;
-        $_SESSION['tiempo']=time();
-        header("Location: datos.php");
-        
-    }
- 
-    if ($login -> email === $email && $login-> rol == 2){
-        session_start();
-        $_SESSION['email']= $login -> email ;
-        $_SESSION['rol']= $login -> rol ;
-        $_SESSION['tiempo']=time();
-        header("Location: rol_usuario.php");
-    }
-    if($login === false){
-        header("Location: index.php");
-    }
-    
+$_SESSION["login_ok"] = "identificado";
 
+// Enviamos al usuario a una de las paginas protegidas
+
+echo "<script type=\"text/javascript\">    
+window.location=\"pruebitas.php\";  
+</script> ";
+
+
+} 
+if ($login -> email ===  $email & $login-> password  === $pass & $login-> rol == 2) 
+{ 
+    $_SESSIONU["login_ok"] = "identificado2";
+
+
+// Enviamos al usuario a una de las paginas protegidas
+echo "<script type=\"text/javascript\">    
+window.location=\"rol_usuario.php\";  
+</script> ";
+
+} 
+
+else 
+{ 
+  
+    echo "<script type=\"text/javascript\">    
+    window.location=\"index.php\";  
+    </script> ";
 }
+} 
+?> 
 
- 
-?>
+

@@ -7,8 +7,10 @@
     use GuzzleHttp\Client;
     use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
 
-    //Api key.
-    $key = "2cdeb2d665123cd6178cb0df9cb52b5f494fd8be";
+use function Composer\Autoload\includeFile;
+
+//Api key.
+    $key = "acf5b61b7c2bc733af960b244183ca9ee693f74a";
 
     //Para envio de correos con template.
     $template_id = "test_template";
@@ -32,12 +34,17 @@
    // Obtenmos la clase config base de datos
    //Base usuarios
         include_once "./config/base_de_datos.php";
+        
         $sentencia = $base_de_datos->query("Select campana.id_campana, campana.nombre_campana,plantilla.id_plantilla,
         plantilla.titulo,plantilla.asunto,plantilla.mensaje,plantilla.documento,
         usuarios.nombre, usuarios.correo, envio.id_envio, envio.tipo_campana, envio.tipo_plantilla
         From campana, plantilla, usuarios, envio
         Where campana.id_campana = $tipo_campana and plantilla.id_plantilla = $tipo_plantilla and envio.tipo_campana = $tipo_campana and envio.tipo_plantilla = $tipo_plantilla ");
         $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);   
+
+        
+       
+        
     //Obter id plantilla
     //$id -> $usuarios->tipo_plantilla;
 
@@ -72,6 +79,8 @@
          
             //Creamos el envio de correos.
             foreach($usuarios as $usuario){
+               // $imag= $usuario->documento;
+                //echo"<img src=$imag alt=''width='50%' height='50%' >"; 
             $create = $sparky->transmissions->post([
                 
                 //Sandbox true para pruebas.
@@ -90,12 +99,16 @@
                         'email' => 'test@sparkpostbox.com'
                     ],
                     'subject' => $usuario->asunto,
-                    'html' => '<html><body>' .$usuario->mensaje.'</p> <p>'.$usuario->documento.'</p></body></html>',
+                    'html' => '<html><body>' .$usuario->mensaje.'</p>
+                     <p> <img src="https://kb.mailwizz.com/wp-content/uploads/2019/12/Screenshot-2019-12-05-at-13.33.55-scaled-e1575571940353.png" alt="My image" />    </p></body></html>',
                     'text' => 'Congratulations, {{name}}! You just sent your very first mailing!'
-                ] 
+                      
+                    ] 
+                    
                 
            
             ]);
+            
         }
             
 

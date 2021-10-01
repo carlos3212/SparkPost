@@ -1,8 +1,8 @@
 <?php //include_once "encabezado.php";
-// include_once './seguridad.php';
+ //include_once './seguridad.php';
 
  ?>
- <?php // if ($_SESSION['rol']==2)
+ <?php  //if ($_SESSION['rol']==2)
  //session_unset();
  //session_destroy();
  ?>
@@ -66,7 +66,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Ver registro:</h6>  
                         <a class="collapse-item" href="datos_login.php">Usuarios</a>
-                        <a class="collapse-item" href="datos.php">Correos</a>
+                        <a class="collapse-item" href="datos.php">Contactos</a>
                         <a class="collapse-item" href="plantillas.php">Plantillas</a>
                         <a class="collapse-item" href="campañas.php">Campañas</a>
                         <a class="collapse-item" href="datos_envio.php">Envio </a>
@@ -96,7 +96,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Insertar registro:</h6>
                         <a class="collapse-item" href="insertarLogin.php">Usuarios</a>
-                        <a class="collapse-item" href="insertarUsuario.php">Correos</a>
+                        <a class="collapse-item" href="insertarUsuario.php">Contactos</a>
                         <a class="collapse-item" href="registroPlantilla.php">Plantillas</a>
                         <a class="collapse-item" href="registroCampaña.php">Campañas</a>
                         <a class="collapse-item" href="registro_envio.php">Envio</a>
@@ -122,15 +122,16 @@
                 </div>
             </li>
 
-            <!-- Divider -->
+            <!-- Divider 
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
+-->
+            <!-- Heading 
             <div class="sidebar-heading">
                 Addons
             </div>
+-->
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Pages Collapse Menu 
             <li class="nav-item active">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
                     aria-controls="collapsePages">
@@ -151,21 +152,23 @@
                     </div>
                 </div>
             </li>
+            -->
 
-            <!-- Nav Item - Charts -->
+            <!-- Nav Item - Charts 
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
             </li>
+            -->
 
-            <!-- Nav Item - Tables -->
+            <!-- Nav Item - Tables 
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>
-
+-->
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

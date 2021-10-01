@@ -58,7 +58,13 @@
                         </div>
                         <div class="form-group">
                             <label for="correo">Archivo</label>
-                            <p style="border: ridge #9c9c9c 1px; background-color: #ffffff ;padding: 5px; -webkit-border-radius: 5px;"><?php echo $usuario -> documento ?></p>
+                            <p style="border: ridge #9c9c9c 1px; background-color: #ffffff ;padding: 5px; -webkit-border-radius: 5px;">
+                             
+                            
+
+                            <?php 
+                            $imag= $usuario->documento;
+                            echo "<img src=$imag alt=''width='50%' height='50%' >"; ?></p>
                      
                         </div>
                    

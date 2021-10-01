@@ -1,6 +1,6 @@
   
 <?php include_once "encabezado.php";
- include_once './seguridad.php';
+ //include_once './seguridad.php';
 
  ?>
  <?php  //if ($_SESSION['rol']==2)
