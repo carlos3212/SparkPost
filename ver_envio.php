@@ -19,9 +19,12 @@
 
     
 
-        $sentencia = $base_de_datos->query("Select envio.id_envio, envio.tipo_campana, envio.tipo_plantilla, campana.nombre_campana,plantilla.titulo,plantilla.asunto,plantilla.mensaje,plantilla.documento
-        From campana, plantilla, usuarios, envio
-        Where id_envio = $id_envio  and tipo_campana = id_campana and tipo_plantilla = id_plantilla
+        $sentencia = $base_de_datos->query("Select  campana.nombre_campana,
+        plantilla.titulo,plantilla.asunto,plantilla.mensaje,plantilla.documento
+        	
+        From campana, plantilla,  envio
+        Where envio.id_envio = $id_envio and campana.id_campana = envio.tipo_campana
+		and plantilla.id_plantilla = envio.tipo_plantilla 
          ");
          
        
@@ -78,7 +81,11 @@
                </button>
                </div>
                <div class="btn-group">
-               <button class="btn btn-success">  <a href="sparkpost.php?tipo_campana=<?php echo $usuario -> tipo_campana ?>&tipo_plantilla=<?php echo $usuario ->tipo_plantilla ?>"> Confirmar</a>
+               <button class="btn btn-success"> 
+                    <a href="sparkpost.php?tipo_campana=<?php echo $usuario -> tipo_campana ?>
+                    &tipo_plantilla=<?php echo $usuario ->tipo_plantilla ?>
+                    &id_envio=<?php echo $usuario ->id_envio ?>
+                    "> Confirmar</a>
                 </button>
 
               

@@ -28,6 +28,7 @@ use function Composer\Autoload\includeFile;
   //Obter id plantilla
   $tipo_campana=($_GET['tipo_campana']);
   $tipo_plantilla=($_GET['tipo_plantilla']);
+  $id_envio=($_GET['id_envio']);
 
   
     
@@ -35,11 +36,12 @@ use function Composer\Autoload\includeFile;
    //Base usuarios
         include_once "./config/base_de_datos.php";
         
-        $sentencia = $base_de_datos->query("Select campana.id_campana, campana.nombre_campana,plantilla.id_plantilla,
-        plantilla.titulo,plantilla.asunto,plantilla.mensaje,plantilla.documento,
-        usuarios.nombre, usuarios.correo, envio.id_envio, envio.tipo_campana, envio.tipo_plantilla
-        From campana, plantilla, usuarios, envio
-        Where campana.id_campana = $tipo_campana and plantilla.id_plantilla = $tipo_plantilla and envio.tipo_campana = $tipo_campana and envio.tipo_plantilla = $tipo_plantilla ");
+        $sentencia = $base_de_datos->query("Select  campana.nombre_campana,
+        plantilla.titulo,plantilla.asunto,plantilla.mensaje,plantilla.documento
+        	
+        From campana, plantilla,  envio
+        Where envio.id_envio = $id_envio and campana.id_campana = $tipo_campana
+		and plantilla.id_plantilla = $tipo_plantilla ");
         $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);   
 
         
@@ -100,7 +102,7 @@ use function Composer\Autoload\includeFile;
                     ],
                     'subject' => $usuario->asunto,
                     'html' => '<html><body>' .$usuario->mensaje.'</p>
-                     <p> <img src="https://kb.mailwizz.com/wp-content/uploads/2019/12/Screenshot-2019-12-05-at-13.33.55-scaled-e1575571940353.png" alt="My image" />    </p></body></html>',
+                     <p> '.$usuario->documento.'    </p></body></html>',
                     'text' => 'Congratulations, {{name}}! You just sent your very first mailing!'
                       
                     ] 

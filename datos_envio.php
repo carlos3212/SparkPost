@@ -15,7 +15,7 @@ include_once "config/base_de_datos.php";
 	$sentenciae = $base_de_datos->query("Select  envio.id_envio, campana.nombre_campana,
 	plantilla.titulo,
 	envio.tipo_campana, envio.tipo_plantilla
-	From campana, plantilla, usuarios, envio
+	From campana, plantilla, envio
 	Where campana.id_campana = envio.tipo_campana  and plantilla.id_plantilla = envio.tipo_plantilla 
 ");
 $envios = $sentenciae->fetchAll(PDO::FETCH_OBJ);

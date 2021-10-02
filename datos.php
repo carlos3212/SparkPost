@@ -27,7 +27,7 @@ if ($login_ok == "identificado1") {
 	
 <?php
 include_once "./config/base_de_datos.php";
-$sentencia = $base_de_datos->query("select id_usuario, nombre,apellido, correo from usuarios");
+$sentencia = $base_de_datos->query("select id_usuario, nombre,apellido, correo, plantilla from usuarios");
 $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 ?>
 
@@ -51,6 +51,7 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 						<th>Nombre</th>
 						<th>Apellido</th>
 						<th>correo</th>
+						<th>plantilla</th>
 						<th>Editar</th>
 						<th>Eliminar</th>
 
@@ -67,6 +68,7 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 							<td><?php echo $usuario->nombre ?></td>
 							<td><?php echo $usuario->apellido ?></td>
 							<td><?php echo $usuario->correo ?></td>
+							<td><?php echo $usuario->plantilla ?></td>
 						
 							<td><a class="btn btn-warning" href="<?php echo "editar.php?id=" . $usuario->id_usuario?>">Editar 📝</a></td>
 							<td><a class="btn btn-danger" href="<?php  echo "eliminar.php?id=" . $usuario->id_usuario?>">Eliminar 🗑️</a></td>

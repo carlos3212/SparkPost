@@ -26,12 +26,13 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 </div>
         <h1>Agregar Contacto</h1>
         <form action="insertCSV.php" method="POST">
-                    
-                    <input type="hidden" name="nombre" value="<?php echo $paraPlantilla->nombre; ?>">
-                   
-                     <div class="form-group">
+
+        <label for="plantilla">Selecionar CSV</label>      
+             <input type="hidden" name="nombre" value="<?php echo $paraNombre->nombre; ?>">
+                
+             <div class="form-group">
                        
-                        <select name="nombre" id = "nombre" class="form-control"> 
+             <select name="nombre" id = "nombre" class="form-control"> 
         <?php
         
         include_once './config/base_de_datos.php';
@@ -44,14 +45,46 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
                 //print_r($row); 
             }
             
+            
+            
         ?>
          </select>	
+         <label for="plantilla">Selecionar plantilla</label>
+         <input type="hidden" name="plantilla" value="<?php echo $paraPlantilla->plantilla; ?>">
+                
+                <div class="form-group">
+                          
+                <select name="plantilla" id = "plantilla" class="form-control"> 
+           <?php
+           
+           include_once './config/base_de_datos.php';
+           $query = "select id_plantilla, titulo from plantilla";
+               $data = $base_de_datos->prepare($query);    // Prepare query for execution
+               $data->execute();// Execute (run) the query
+           
+               while($row=$data->fetch(PDO::FETCH_ASSOC)){
+                   echo '<option value="'.$row['id_plantilla'] .'">'.$row['titulo'].'</option>';
+                   //print_r($row); 
+               }
+               
+               
+               
+           ?>
+            </select>	
+         
+     
+        
+        
+       
+            
+        
                     </div>
                    
                     <button type="submit" class="btn btn-success">Guardar</button>
                     
                             
-                     </div>
+                     </div> 
+           
 		
             <!--FOrmulario de registro-->
 			<!--<form action="./model/insertar.php" method="POST"> 

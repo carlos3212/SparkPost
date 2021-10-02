@@ -2,6 +2,7 @@
 include_once'config/base_de_datos.php';
 
 $nombre = $_POST['nombre'];
+$plantilla=$_POST['plantilla'];
 
 
     $archivo = fopen( "$nombre", "rb" );
@@ -22,9 +23,10 @@ $nombre = $_POST['nombre'];
         echo "Nombre: ".$aDatos[0]."<br />";
         echo "Apellido: ".$aDatos[1]."<br />";
         echo "Correo: ".$aDatos[2]."<br />";
+        //echo "PLantilla".$plantilla."<br/>";
         echo "--------------------------<br />";
-        $sentencia = $base_de_datos->prepare("INSERT INTO usuarios (nombre, apellido, correo) VALUES (?, ?, ?)");
-        $resultado = $sentencia->execute([$aDatos[0], $aDatos[1], $aDatos[2]]); # Pasar en el mismo orden de los ?
+        $sentencia = $base_de_datos->prepare("INSERT INTO usuarios (nombre, apellido, correo,plantilla) VALUES (?, ?, ?, ?)");
+        $resultado = $sentencia->execute([$aDatos[0], $aDatos[1], $aDatos[2],$plantilla]); # Pasar en el mismo orden de los ?
         
     }
     fclose( $archivo );
