@@ -1,3 +1,6 @@
+
+
+  
   
 <?php include_once "encabezado.php";
  include_once './seguridad.php';
@@ -21,6 +24,7 @@
 
         $sentencia = $base_de_datos->query("Select  campana.nombre_campana,
         plantilla.titulo,plantilla.asunto,plantilla.mensaje,plantilla.documento
+		,envio.tipo_campana,envio.tipo_plantilla
         	
         From campana, plantilla,  envio
         Where envio.id_envio = $id_envio and campana.id_campana = envio.tipo_campana
@@ -37,6 +41,7 @@
                     <br>
                     <?php
                     foreach($usuarios as $usuario ){  
+                        
                         ?> 
 
                     <div class="form-group">
@@ -66,38 +71,48 @@
                             
 
                             <?php 
-                            $imag= $usuario->documento;
-                            echo "<img src=$imag alt=''width='50%' height='50%' >"; ?></p>
+                            $Base64Img = "data:image/png;base64,$usuario->documento";               
+                            list(, $Base64Img) = explode(';', $Base64Img);
+                            list(, $Base64Img) = explode(',', $Base64Img);
+                            $Base64Img = base64_decode($Base64Img);
+                            file_put_contents('unodepiera.png', $Base64Img);    
+                            echo "<img src='unodepiera.png' alt='unodepiera'/>";
+                            //$imag= $usuario->documento;
+                            //echo "<img src=$imag alt=''width='50%' height='50%' >"; ?></p>
                      
                         </div>
+
+                      
                    
                  
                  <?php } ?>
-                 
 
-               </div>
-               <div class="btn-group">
+                 <div class="btn-group">
                <button class="btn btn-success">  <a href="envioMensaje.php"> Cancelar</a>
                </button>
                </div>
                <div class="btn-group">
                <button class="btn btn-success"> 
-                    <a href="sparkpost.php?tipo_campana=<?php echo $usuario -> tipo_campana ?>
-                    &tipo_plantilla=<?php echo $usuario ->tipo_plantilla ?>
-                    &id_envio=<?php echo $usuario ->id_envio ?>
-                    "> Confirmar</a>
+               <?php  
+                 
+                
+                 ?>
+                  <?php  
+                 
+                 echo "<a href='sparkpost.php?id_envio=$id_envio &tipo_plantilla=$usuario->tipo_plantilla &tipo_campana=$usuario->tipo_campana          '>confirmar</a>";
+                 
+                 ?>
+                 
+                 
                 </button>
 
               
                </div>
-           
-</div>
-              
-             
-    
-    <!-- /.container-fluid -->
+                 
 
-</div>
+               
+           
+
 <!-- End of Main Content -->
 
 <!-- Footer -->
@@ -150,6 +165,5 @@ aria-hidden="true">
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
-
 
 

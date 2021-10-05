@@ -10,7 +10,7 @@
 use function Composer\Autoload\includeFile;
 
 //Api key.
-    $key = "acf5b61b7c2bc733af960b244183ca9ee693f74a";
+    $key = "b2df037e84a6b87846c474913499000973520c6d";
 
     //Para envio de correos con template.
     $template_id = "test_template";
@@ -29,23 +29,25 @@ use function Composer\Autoload\includeFile;
   $tipo_campana=($_GET['tipo_campana']);
   $tipo_plantilla=($_GET['tipo_plantilla']);
   $id_envio=($_GET['id_envio']);
-
   
     
    // Obtenmos la clase config base de datos
    //Base usuarios
         include_once "./config/base_de_datos.php";
         
-        $sentencia = $base_de_datos->query("Select  campana.nombre_campana,
-        plantilla.titulo,plantilla.asunto,plantilla.mensaje,plantilla.documento
-        	
-        From campana, plantilla,  envio
+        $sentencia = $base_de_datos->query("Select campana.nombre_campana,
+        plantilla.titulo,plantilla.asunto,plantilla.mensaje,plantilla.documento,
+        usuarios.nombre, usuarios.correo, envio.id_envio, 
+		envio.tipo_campana, envio.tipo_plantilla
+        From campana, plantilla, usuarios, envio
         Where envio.id_envio = $id_envio and campana.id_campana = $tipo_campana
-		and plantilla.id_plantilla = $tipo_plantilla ");
+		and plantilla.id_plantilla = $tipo_plantilla and usuarios.plantilla = $tipo_plantilla");
         $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);   
 
+    
         
-       
+      
+
         
     //Obter id plantilla
     //$id -> $usuarios->tipo_plantilla;
@@ -81,9 +83,14 @@ use function Composer\Autoload\includeFile;
          
             //Creamos el envio de correos.
             foreach($usuarios as $usuario){
+                    
+                     
+               
+                
                // $imag= $usuario->documento;
                 //echo"<img src=$imag alt=''width='50%' height='50%' >"; 
             $create = $sparky->transmissions->post([
+                
                 
                 //Sandbox true para pruebas.
                 'options' => [
@@ -100,9 +107,10 @@ use function Composer\Autoload\includeFile;
                         'name' => $usuario->titulo,
                         'email' => 'test@sparkpostbox.com'
                     ],
+                    
                     'subject' => $usuario->asunto,
                     'html' => '<html><body>' .$usuario->mensaje.'</p>
-                     <p> '.$usuario->documento.'    </p></body></html>',
+                     <p>  <img src=unodepiera.png alt=unodepiera/> </p></body></html>',
                     'text' => 'Congratulations, {{name}}! You just sent your very first mailing!'
                       
                     ] 

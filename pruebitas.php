@@ -3,7 +3,7 @@
 $rutaImagen = __DIR__ . "/ima.png";
 $contenidoBinario = file_get_contents($rutaImagen);
 $imagenComoBase64 = base64_encode($contenidoBinario);
-echo $imagenComoBase64;
+//echo $imagenComoBase64;
 
 //imagen png codificada en base64
 $Base64Img = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK8AAACvAQMAAA
@@ -24,7 +24,7 @@ list(, $Base64Img) = explode(',', $Base64Img);
 $Base64Img = base64_decode($Base64Img);
 //escribimos la información obtenida en un archivo llamado 
 //unodepiera.png para que se cree la imagen correctamente
-file_put_contents('unodepiera.png', $Base64Img);    
+echo  file_put_contents('unodepiera.png', $Base64Img);    
 echo "<img src='unodepiera.png' alt='unodepiera' />";
 
 
