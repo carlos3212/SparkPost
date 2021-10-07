@@ -30,13 +30,49 @@
         Where envio.id_envio = $id_envio and campana.id_campana = envio.tipo_campana
 		and plantilla.id_plantilla = envio.tipo_plantilla 
          ");
+        
+        $sentenciaCon = $base_de_datos->query("Select  usuarios.nombre,usuarios.apellido,usuarios.correo
+        From usuarios,envio
+        Where id_envio = $id_envio and  usuarios.plantilla = envio.tipo_plantilla ")
          
+        ?>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <h3>Contactos</h3>
+
+<table class="table table-bordered table-striped mb-0">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Correo</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+      <?php
+       $contactos = $sentenciaCon->fetchAll(PDO::FETCH_OBJ); 
+  foreach($contactos as $contacto ){  
+      ?>
+    <tr>
+      <th scope="row">1</th>
+      <td><?php echo $contacto -> nombre ?></td>
+      <td><?php echo $contacto -> apellido ?></td>
+      <td><?php echo $contacto -> correo ?></td>
+    </tr>
+   </tbody>
+   <?php } ?>
+</table>
+
+</div>
+        <?php
        
 
       //validacion registro
 
         $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ); 
         ?>  
+        <h3>Plantilla</h3>
                 <div class="container-fluid">
                     <br>
                     <?php

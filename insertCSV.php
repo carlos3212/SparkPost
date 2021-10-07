@@ -1,5 +1,7 @@
 <?php
-include_once'config/base_de_datos.php';
+ include_once "encabezado.php" ;
+
+include_once "config/base_de_datos.php";
 
 $nombre = $_POST['nombre'];
 $plantilla=$_POST['plantilla'];
@@ -16,18 +18,27 @@ $plantilla=$_POST['plantilla'];
     echo "<br />-------------------------------------<p />";
     // Volvemos a situar el puntero al principio del archivo:
     fseek($archivo, 0);
-    // Recorremos el archivo completo:
+    //Recorremos el archivo completo:
      while( feof($archivo) == false )
      {
          $aDatos = fgetcsv( $archivo, 100, ",");
         echo "Nombre: ".$aDatos[0]."<br />";
         echo "Apellido: ".$aDatos[1]."<br />";
         echo "Correo: ".$aDatos[2]."<br />";
-        //echo "PLantilla".$plantilla."<br/>";
+        echo "PLantilla: ".$plantilla."<br/>";
         echo "--------------------------<br />";
         $sentencia = $base_de_datos->prepare("INSERT INTO usuarios (nombre, apellido, correo,plantilla) VALUES (?, ?, ?, ?)");
         $resultado = $sentencia->execute([$aDatos[0], $aDatos[1], $aDatos[2],$plantilla]); # Pasar en el mismo orden de los ?
         
     }
+  
     fclose( $archivo );
+
+    if ($resultado === true) {
+        # Redireccionar a la lista
+        header("Location: http://localhost:8080/sparkpost/insertarUsuario.php");
+    } else {
+        echo "Algo salió mal. Por favor verifica que la tabla exista";
+    }
+    
 ?>
