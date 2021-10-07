@@ -12,15 +12,16 @@ enviados a través de formulario.php
 ?>
 <?php
 #Salir si alguno de los datos no está presente
-if (!isset($_POST["tipo_campana"]) || !isset($_POST["tipo_plantilla"])) {
-    exit();
-}
+//if (!isset($_POST["tipo_campana"]) || !isset($_POST["tipo_plantilla"])) {
+  //  exit();
+//}
 
 #Si todo va bien, se ejecuta esta parte del código...
 
 include_once "../config/base_de_datos.php";
-$tipo_campana = $_POST["tipo_campana"];
-$tipo_plantilla = $_POST["tipo_plantilla"];
+$tipo_campana = $_POST["campana"];
+$tipo_plantilla = $_POST["plantilla"];
+
 
 /*
 Al incluir el archivo "base_de_datos.php", todas sus variables están

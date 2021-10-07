@@ -14,18 +14,59 @@ $envio = $sentenciae->fetchAll(PDO::FETCH_OBJ);
 
         <!-- Page Heading -->
         <h1>Agregar</h1>
-		<form action="./model/insertar_envio.php" method="POST">
-			<div class="form-group">
-				<label for="tipo_campana">Tipo Campaña</label>
-				<input required name="tipo_campana" type="text" id="tipo_campana" placeholder="tipo_campana" class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="tipo_plantilla">Tipo PLantilla</label>
-				<input required name="tipo_plantilla" type="text" id="tipo_plantilla" placeholder="tipo_plantilla" class="form-control">
-			</div>
-           
+		
+        <form action="./model/insertar_envio.php" method="POST">
+         <!-- form-group -->
+			
+            <label for="documento">Campaña</label>
+                                
+                    <input type="hidden" name="campana" value="<?php echo $paraCampana->campana; ?>">
+                   
+                     <div class="form-group">
+                       
+                        <select name="campana" id = "campana" class="form-control"> 
+                        <?php
+                        
+                        include_once './config/base_de_datos.php';
+                        $query = "select id_campana, nombre_campana from campana";
+                            $data = $base_de_datos->prepare($query);    // Prepare query for execution
+                            $data->execute();// Execute (run) the query
+                        
+                            while($row=$data->fetch(PDO::FETCH_ASSOC)){
+                                echo '<option value="'.$row['id_campana'].'">'.$row['nombre_campana'].'</option>';
+                                //print_r($row); 
+                            }
+                            
+                        ?>
+                        </select>	
+                 
+                        <label for="documento">Plantilla</label>
+                                
+                                <input type="hidden" name="plantilla" value="<?php echo $paraPlantilla->plantilla; ?>">
+                               
+                                 <div class="form-group">
+                                   
+                                    <select name="plantilla" id = "plantilla" class="form-control"> 
+                                    <?php
+                                    
+                                    include_once './config/base_de_datos.php';
+                                    $query = "select id_plantilla, titulo from plantilla";
+                                        $data = $base_de_datos->prepare($query);    // Prepare query for execution
+                                        $data->execute();// Execute (run) the query
+                                    
+                                        while($row=$data->fetch(PDO::FETCH_ASSOC)){
+                                            echo '<option value="'.$row['id_plantilla'].'">'.$row['titulo'].'</option>';
+                                            //print_r($row); 
+                                        }
+                                        
+                                    ?>
+                                    </select>	
+                   
+            <!-- form-group -->
+            </div>
+			
 			<button type="submit" class="btn btn-success">Guardar</button>
-			<a href="./listar.php" class="btn btn-warning">Ver todas</a>
+			<a href="plantillas.php" class="btn btn-warning">Ver todas</a>
 		</form>
 
     </div>
