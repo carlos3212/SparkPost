@@ -18,7 +18,7 @@ if (!isset($_POST["asunto"]) || !isset($_POST["mensaje"])) {
 
 #Si todo va bien, se ejecuta esta parte del código...
 
-include_once "../config/base_de_datos.php";
+include_once "./config/base_de_datos.php";
 $titulo = $_POST["titulo"];
 $asunto = $_POST["asunto"];
 $mensaje = $_POST["mensaje"];

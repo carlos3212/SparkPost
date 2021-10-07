@@ -72,12 +72,9 @@
 
                             <?php 
                             $Base64Img = "data:image/png;base64,$usuario->documento";               
-                            list(, $Base64Img) = explode(';', $Base64Img);
-                            list(, $Base64Img) = explode(',', $Base64Img);
-                            $Base64Img = base64_decode($Base64Img);
-                            file_put_contents('unodepiera.png', $Base64Img);    
-                            echo "<img src='unodepiera.png' alt='unodepiera'/>";
-                            //$imag= $usuario->documento;
+                               
+                            echo "<img src= data:image/png;base64,$usuario->documento alt='unodepiera'/>";
+                             //$imag= $usuario->documento;
                             //echo "<img src=$imag alt=''width='50%' height='50%' >"; ?></p>
                      
                         </div>

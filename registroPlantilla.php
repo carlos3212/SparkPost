@@ -9,7 +9,7 @@
     <h1>Cargar</h1>
         <div class="row">
   <div class="col-md-12 offset-md-3">
-  <form action="files.php" method="post" enctype="multipart/form-data" id="filesForm">
+  <form action="imagen.php" method="post" enctype="multipart/form-data" id="filesForm">
     <div class="col-md-4 col-md-offset-4">
         <input class="form-control" type="file" id="file" name="file[]" multiple>
         <button type="button" onclick="subir()" class="btn btn-primary form-control" >Cargar</button>
@@ -20,7 +20,7 @@
 
         <!-- Page Heading -->
         <h1>Agregar</h1>
-		<form action="./model/insertarPlantilla.php" method="POST">
+		<form action="insertar_plantilla.php" method="POST">
          <!-- form-group -->
 			<div class="form-group">
 				<label for="titulo">Titulo</label>
@@ -49,7 +49,7 @@
         <?php
         
         include_once './config/base_de_datos.php';
-        $query = "select id, nombre from cargarcsv";
+        $query = "select id_imagen, nombre from cargarimg";
             $data = $base_de_datos->prepare($query);    // Prepare query for execution
             $data->execute();// Execute (run) the query
         
@@ -133,7 +133,7 @@ aria-hidden="true">
         var Form = new FormData($('#filesForm')[0]);
         $.ajax({
 
-            url: "files.php",
+            url: "imagen.php",
             type: "post",
             data : Form,
             processData: false,

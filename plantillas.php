@@ -48,7 +48,7 @@ $plantillas = $sentenciaP->fetchAll(PDO::FETCH_OBJ);
 							<td><?php echo $plantilla->titulo ?></td>
 							<td><?php echo $plantilla->asunto ?></td>
 							<td><?php echo $plantilla->mensaje ?></td>
-							<td><?php echo $plantilla->documento ?></td>
+							<td><?php  echo "<img src= data:image/png;base64,$plantilla->documento alt='N/A' width='25%' height='25%'/>" ?></td>
 							<td><a class="btn btn-warning" href="<?php echo "editarPlantilla.php?id=" . $plantilla->id_plantilla?>">Editar 📝</a></td>
 							<td><a class="btn btn-danger" href="<?php  echo "eliminarPlantilla.php?id=" . $plantilla->id_plantilla?>">Eliminar 🗑️</a></td>
 						</tr>

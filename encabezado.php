@@ -97,10 +97,10 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Insertar registro:</h6>
                         <a class="collapse-item" href="insertarLogin.php">Usuarios</a>
-                        <a class="collapse-item" href="insertarUsuario.php">Contactos</a>
-                        <a class="collapse-item" href="registroPlantilla.php">Plantillas</a>
                         <a class="collapse-item" href="registroCampaña.php">Campañas</a>
+                        <a class="collapse-item" href="registroPlantilla.php">Plantillas</a>
                         <a class="collapse-item" href="registro_envio.php">Envio</a>
+                        <a class="collapse-item" href="insertarUsuario.php">Contactos</a>
                     </div>
                 </div>
             </li>
