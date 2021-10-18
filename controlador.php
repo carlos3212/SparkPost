@@ -17,34 +17,26 @@ if ($login -> email ===  $email && $login-> password  === $pass && $login-> rol 
 { 
 // Creamos la variable de sesion que nos permitira el acceso a las demas paginas
 
-$_SESSION["login_ok"] = "identificado";
+
 
 // Enviamos al usuario a una de las paginas protegidas
 
-echo "<script type=\"text/javascript\">    
-window.location=\"pruebitas.php\";  
-</script> ";
+header("location: datos.php");
 
 
 } 
 if ($login -> email ===  $email & $login-> password  === $pass & $login-> rol == 2) 
 { 
-    $_SESSIONU["login_ok"] = "identificado2";
-
-
+    
 // Enviamos al usuario a una de las paginas protegidas
-echo "<script type=\"text/javascript\">    
-window.location=\"rol_usuario.php\";  
-</script> ";
+header("location: plantillas_usuario.php  ");
 
 } 
 
 else 
 { 
   
-    echo "<script type=\"text/javascript\">    
-    window.location=\"index.php\";  
-    </script> ";
+    echo "Datos incorrectos";
 }
 } 
 ?> 

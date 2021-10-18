@@ -1,19 +1,22 @@
   
 <?php include_once "encabezado_usuario.php";
- //include_once './seguridad.php';
- include_once './controlador.php'
+// include_once './seguridad.php';
+//include_once "./controlador.php"
+ ?>
+ <?php  //if ($_SESSION['rol']==2)
+//session_unset();
+//session_destroy();
 
- ?>
- <?php  if ($_SESSION['rol']==1)
- session_unset();
- session_destroy();
- ?>
+  ?>
+
+
 
     <!-- End of Topbar -->
-   
-    <?php
+	
+<?php
+session_start();
 include_once "./config/base_de_datos.php";
-$sentencia = $base_de_datos->query("select id_usuario, nombre, correo from usuarios");
+$sentencia = $base_de_datos->query("select id_usuario, nombre,apellido, correo, plantilla from usuarios");
 $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 ?>
 
@@ -22,18 +25,22 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1>Usuarios</h1>
+        <h1>Contactos</h1>
     
 
 		
 		<br>
+		
 		<div class="table-responsive">
 			<table class="table table-bordered">
 				<thead class="thead-dark">
 					<tr>
+						
 						<th>ID</th>
 						<th>Nombre</th>
+						<th>Apellido</th>
 						<th>correo</th>
+						<th>plantilla</th>
 						<th>Editar</th>
 						<th>Eliminar</th>
 
@@ -48,7 +55,9 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 						<tr>
 							<td><?php echo $usuario->id_usuario ?></td>
 							<td><?php echo $usuario->nombre ?></td>
+							<td><?php echo $usuario->apellido ?></td>
 							<td><?php echo $usuario->correo ?></td>
+							<td><?php echo $usuario->plantilla ?></td>
 						
 							<td><a class="btn btn-warning" href="<?php echo "editar.php?id=" . $usuario->id_usuario?>">Editar 📝</a></td>
 							<td><a class="btn btn-danger" href="<?php  echo "eliminar.php?id=" . $usuario->id_usuario?>">Eliminar 🗑️</a></td>

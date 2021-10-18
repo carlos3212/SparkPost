@@ -1,31 +1,20 @@
   
 <?php include_once "encabezado.php";
 // include_once './seguridad.php';
-include_once "./controlador.php"
+//include_once "./controlador.php"
  ?>
- <?php // if ($_SESSION['rol']==2)
- //session_unset();
- //session_destroy();
- ?>
- <?php session_start();
+ <?php  //if ($_SESSION['rol']==2)
+//session_unset();
+//session_destroy();
 
-$login_ok = $_SESSION["login_ok"];
-
-if ($login_ok == "identificado1") {
-	
-	header("location: http://localhost:8080/sparkpost/index.php");
+  ?>
 
 
-
-}
-
-
-
-?>
 
     <!-- End of Topbar -->
 	
 <?php
+session_start();
 include_once "./config/base_de_datos.php";
 $sentencia = $base_de_datos->query("select id_usuario, nombre,apellido, correo, plantilla from usuarios");
 $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
