@@ -1,6 +1,6 @@
  
 <?php
- include_once './seguridad.php';
+ //include_once './seguridad.php';
  
 if (!isset($_GET["id"]) ) {
     exit();
