@@ -1,21 +1,17 @@
   
-<?php include_once "encabezado.php";
-// include_once './seguridad.php';
-//include_once "./controlador.php"
- ?>
- <?php  //if ($_SESSION['rol']==2)
-//session_unset();
-//session_destroy();
-
-  ?>
-
-
-
-    <!-- End of Topbar -->
-	
-<?php
-session_start();
+<?php 
+include_once "encabezado.php";
+include_once "./conexion.php";
 include_once "./config/base_de_datos.php";
+
+
+
+
+   
+	
+
+
+
 $sentencia = $base_de_datos->query("select id_usuario, nombre,apellido, correo, plantilla from usuarios");
 $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 ?>

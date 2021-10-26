@@ -46,20 +46,20 @@
                      <div class="form-group">
                        
                         <select name="nombre" id = "nombre" class="form-control"> 
-        <?php
-        
-        include_once './config/base_de_datos.php';
-        $query = "select id_imagen, nombre from cargarimg";
-            $data = $base_de_datos->prepare($query);    // Prepare query for execution
-            $data->execute();// Execute (run) the query
-        
-            while($row=$data->fetch(PDO::FETCH_ASSOC)){
-                echo '<option value="'.$row['nombre'].'">'.$row['nombre'].'</option>';
-                //print_r($row); 
-            }
-            
-        ?>
-         </select>	
+                        <?php
+                        
+                        include_once './config/base_de_datos.php';
+                        $query = "select id_imagen, nombre from cargarimg";
+                            $data = $base_de_datos->prepare($query);    // Prepare query for execution
+                            $data->execute();// Execute (run) the query
+                        
+                            while($row=$data->fetch(PDO::FETCH_ASSOC)){
+                                echo '<option value="'.$row['nombre'].'">'.$row['nombre'].'</option>';
+                                //print_r($row); 
+                            }
+                            
+                        ?>
+                        </select>	
                  
                    
             <!-- form-group -->
