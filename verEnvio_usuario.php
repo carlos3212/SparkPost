@@ -2,19 +2,22 @@
 
   
   
-<?php include_once "encabezado_usuario.php";
- //include_once './seguridad.php';
+<?php 
 
- ?>
- <?php  if ($_SESSION['rol']==2)
- session_unset();
- session_destroy();
- ?>
+session_start();
+$rol="2";
+$usuario =$_SESSION['usuario'];
+$pass =$_SESSION['pass'] ;
+$us= $_SESSION['usbase'];
+$ps= $_SESSION['pswbase'];
+$rol_usuario= $_SESSION['rolbase2']; 
+if ($usuario == $us && $pass == $ps &&  $rol == $rol_usuario)
+{
 
-    <!-- End of Topbar -->
+include_once "encabezado_usuario.php;";
 
-     <!-- Begin Page Content -->
-    <?php 
+    
+    
     $id_envio = $_POST['id_envio'];
     
 
@@ -198,5 +201,13 @@ aria-hidden="true">
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
+<?php
+}else{
+    echo "fail";
+    header ('Location: index.php');
+  
+}
 
+
+?>
 

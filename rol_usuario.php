@@ -1,21 +1,19 @@
   
-<?php include_once "encabezado_usuario.php";
-// include_once './seguridad.php';
-//include_once "./controlador.php"
- ?>
- <?php  //if ($_SESSION['rol']==2)
-//session_unset();
-//session_destroy();
-
-  ?>
-
-
-
-    <!-- End of Topbar -->
-	
 <?php
+
 session_start();
+
+$rol="2";
+$usuario =$_SESSION['usuario'];
+$pass =$_SESSION['pass'] ;
+$us= $_SESSION['usbase'];
+$ps= $_SESSION['pswbase'];
+$rol_usuario= $_SESSION['rolbase2']; 
+if ($usuario == $us && $pass == $ps &&  $rol == $rol_usuario)
+{
+include_once "encabezado_usuario.php";
 include_once "./config/base_de_datos.php";
+
 $sentencia = $base_de_datos->query("select id_usuario, nombre,apellido, correo, plantilla from usuarios");
 $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 ?>
@@ -124,4 +122,10 @@ aria-hidden="true">
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
-
+<?php
+}else{
+    echo "fail";
+    header ('Location: index.php');
+  
+}
+?>

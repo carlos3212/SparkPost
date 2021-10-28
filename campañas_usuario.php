@@ -1,10 +1,17 @@
-<?php include_once "encabezado_usuario.php";
+<?php 
+session_start();
+$rol="2";
+$usuario =$_SESSION['usuario'];
+$pass =$_SESSION['pass'] ;
+$us= $_SESSION['usbase'];
+$ps= $_SESSION['pswbase'];
+$rol_usuario= $_SESSION['rolbase2']; 
+if ($usuario == $us && $pass == $ps &&  $rol == $rol_usuario)
+{
+
+include_once "encabezado_usuario.php";
  
- ?>
 
-    <!-- End of Topbar -->
-
-    <?php
 include_once "./config/base_de_datos.php";
 $sentenciaC = $base_de_datos->query("select id_campana, nombre_campana from campana");
 $campanas = $sentenciaC->fetchAll(PDO::FETCH_OBJ);
@@ -106,3 +113,9 @@ aria-hidden="true">
 </body>
 
 </html>
+<?php
+}else{
+    echo "fail";
+    header ('Location: index.php');
+  
+}

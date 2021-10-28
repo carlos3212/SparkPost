@@ -1,4 +1,14 @@
-<?php include_once "encabezado_usuario.php" ?>
+<?php 
+session_start();
+$rol="2";
+$usuario =$_SESSION['usuario'];
+$pass =$_SESSION['pass'] ;
+$us= $_SESSION['usbase'];
+$ps= $_SESSION['pswbase'];
+$rol_usuario= $_SESSION['rolbase2']; 
+if ($usuario == $us && $pass == $ps &&  $rol == $rol_usuario)
+{
+include_once "encabezado_usuario.php"; ?>
 
                   <!-- End of Topbar -->
 
@@ -95,3 +105,12 @@ $query = "select id_envio,tipo_plantilla, tipo_campana from envio";
 </body>
 
 </html>
+<?php
+}else{
+    echo "fail";
+    header ('Location: index.php');
+  
+}
+
+
+?>

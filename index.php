@@ -43,7 +43,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">SIDEVOX!</h1>
                                     </div>
-                                    <form action="./controlador.php" method="POST">
+                                    <form action="./validacion.php" method="POST">
                                         <div class="form-group">
                                         <input required name="email" type="text" id="email" placeholder="Email" class="form-control">
                                         </div>

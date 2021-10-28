@@ -1,4 +1,17 @@
-<?php include_once "encabezado.php" ?>
+<?php 
+session_start();
+
+
+$rol="1";
+$usuario =$_SESSION['usuario'];
+$pass =$_SESSION['pass'] ;
+$us= $_SESSION['usbase'];
+$ps= $_SESSION['pswbase'];
+$rols= $_SESSION['rolbase']; 
+if ($usuario == $us && $pass == $ps &&  $rol == $rols)
+{
+    include_once "encabezado.php"; 
+    ?>
 
     <!-- End of Topbar -->
 
@@ -152,3 +165,10 @@ aria-hidden="true">
 </body>
 
 </html>
+<?php
+}else{
+    echo "fail";
+    header ('Location: index.php');
+  
+}
+?>

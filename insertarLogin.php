@@ -1,4 +1,15 @@
-<?php include_once "encabezado.php" ?>
+<?php
+session_start();
+include_once "encabezado.php";
+$rol="1";
+$usuario =$_SESSION['usuario'];
+$pass =$_SESSION['pass'] ;
+$us= $_SESSION['usbase'];
+$ps= $_SESSION['pswbase'];
+$rols= $_SESSION['rolbase']; 
+if ($usuario == $us && $pass == $ps &&  $rol == $rols)
+{
+?>
 <!-- Content Wrapper -->
     
     <!-- End of Topbar -->
@@ -99,3 +110,10 @@ aria-hidden="true">
 </body>
 
 </html>
+<?php
+}else{
+    echo "fail";
+    header ('Location: index.php');
+  
+}
+?>

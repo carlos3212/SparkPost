@@ -1,11 +1,14 @@
-<?php 
- //include_once './seguridad.php';
-
- ?>
- <?php  //if ($_SESSION['rol']==1)
- //session_unset();
- //session_destroy();
- ?>
+<?php
+session_start();
+$rol="2";
+$usuario =$_SESSION['usuario'];
+$pass =$_SESSION['pass'] ;
+$us= $_SESSION['usbase'];
+$ps= $_SESSION['pswbase'];
+$rol_usuario= $_SESSION['rolbase2']; 
+if ($usuario == $us && $pass == $ps &&  $rol == $rol_usuario)
+{
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -326,3 +329,11 @@
         </ul>
 
     </nav>
+    <?php
+    }else{
+        echo "fail";
+        header ('Location: index.php');
+      
+    }
+    
+    ?>

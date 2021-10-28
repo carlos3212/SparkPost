@@ -1,17 +1,19 @@
 
 
-<?php include_once "encabezado.php";
- include_once './seguridad.php';
+<?php 
+session_start();
+$rol="1";
+$usuario =$_SESSION['usuario'];
+$pass =$_SESSION['pass'] ;
+$us= $_SESSION['usbase'];
+$ps= $_SESSION['pswbase'];
+$rols= $_SESSION['rolbase']; 
+if ($usuario == $us && $pass == $ps &&  $rol == $rols)
+{
 
- ?>
- <?php  if ($_SESSION['rol']==2)
- session_unset();
- session_destroy();
- ?>
+include_once "encabezado.php";
 
-    <!-- End of Topbar -->
 
-    <?php
 include_once "./config/base_de_datos.php";
 $sentenciaP = $base_de_datos->query("select id_plantilla, titulo, asunto, mensaje, documento from plantilla ");
 $plantillas = $sentenciaP->fetchAll(PDO::FETCH_OBJ);
@@ -118,3 +120,10 @@ aria-hidden="true">
 </body>
 
 </html>
+<?php
+}else{
+    echo "fail";
+    //header ('Location: index.php');
+  
+}
+?>

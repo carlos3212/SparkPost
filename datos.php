@@ -1,9 +1,19 @@
   
 <?php 
+session_start();
 include_once "encabezado.php";
 include_once "./conexion.php";
 include_once "./config/base_de_datos.php";
 
+
+$rol="1";
+$usuario =$_SESSION['usuario'];
+$pass =$_SESSION['pass'] ;
+$us= $_SESSION['usbase'];
+$ps= $_SESSION['pswbase'];
+$rols= $_SESSION['rolbase']; 
+if ($usuario == $us && $pass == $ps &&  $rol == $rols)
+{
 
 
 
@@ -121,3 +131,11 @@ aria-hidden="true">
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
 
+<?php
+
+}else{
+    echo "fail";
+    header ('Location: index.php');
+  
+}
+?>
