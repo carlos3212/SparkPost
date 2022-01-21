@@ -1,14 +1,13 @@
 <?php
-
-    require('./vendor/autoload.php');
+    require('../vendor/autoload.php');
 
     //Variables para sparkpost.
     use SparkPost\SparkPost;
     use GuzzleHttp\Client;
     use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
-    
+
     //Api key.
-    $key = "485467f9a14764c703f3ae4dc6470ffa20f8cd65";
+    $key = "f3f40c35750a5bce7ce337a3bf3af6be4877074a";
 
     //Creamos un request.
     $httpClient = new GuzzleAdapter(new Client());
@@ -20,7 +19,7 @@
     $tamplate = "test template";
     $template_id = "test_template";
 
-    $dominio = "sparkpostbox.com";
+    $dominio = "spark.crmmelendez.com";
 
     //Template en text plain.
     $plain_text = "Prueba";

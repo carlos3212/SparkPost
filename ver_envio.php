@@ -3,12 +3,13 @@
   
   
 <?php include_once "encabezado.php";
- include_once './seguridad.php';
+ //include_once './seguridad.php';
 
  ?>
- <?php  if ($_SESSION['rol']==2)
- session_unset();
- session_destroy();
+ 
+ <?php // if ($_SESSION['rol']==2)
+ //session_unset();
+ //session_destroy();
  ?>
 
     <!-- End of Topbar -->

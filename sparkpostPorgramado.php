@@ -8,7 +8,7 @@
     use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
 
     //Api key.
-    $key = "e83b136e012b0e962717f3885a5cd570b81e55b7";
+    $key = "31952b198bd22f43bb7685a7e202a31396a0a860";
 
     //Para envio de correos con template.
     $template_id = "test_template";
