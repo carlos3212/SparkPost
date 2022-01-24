@@ -109,8 +109,8 @@
 
                             <?php 
                             $Base64Img = "data:image/png;base64,$usuario->documento";               
-                               
-                            echo "<img src= data:image/png;base64,$usuario->documento alt='unodepiera'/>";
+                            
+                            echo "<img src= $Base64Img alt='unodepiera'/>";
                              //$imag= $usuario->documento;
                             //echo "<img src=$imag alt=''width='50%' height='50%' >"; ?></p>
                      

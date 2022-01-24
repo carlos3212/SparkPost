@@ -34,8 +34,8 @@
    $sentencia = $base_de_datos->query("Select campana.nombre_campana,
    plantilla.titulo,plantilla.asunto,plantilla.mensaje,plantilla.documento,
    usuarios.nombre, usuarios.correo, envio.id_envio, 
-   envio.tipo_campana, envio.tipo_plantilla
-   From campana, plantilla, usuarios, envio
+   envio.tipo_campana, envio.tipo_plantilla,cargarimg.nombre as imagen
+   From campana, plantilla, usuarios, envio, cargarimg
    Where envio.id_envio = $id_envio and campana.id_campana = $tipo_campana
    and plantilla.id_plantilla = $tipo_plantilla and usuarios.plantilla = $tipo_plantilla");
    $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);   
@@ -57,6 +57,11 @@
                //Creamos el envio de correos.
             foreach($usuarios as $usuario){
                     
+                if(file_exists($usuario->imagen) ){
+                    $imagen="/.'$usuario->imagen.'";
+                }
+                        
+                             
                 $create = $sparky->transmissions->post([
                              
                'content' => [
@@ -65,7 +70,11 @@
                             'email' => "soporte@spark.crmmelendez.com",
                         ],
                         'subject' => $usuario->asunto,
-                        'html' => '<html><body><h1><p>' .$usuario->mensaje.'</p></body></html>',
+                        'html' => '<html>
+                        <body>
+                        <p>' .$usuario->mensaje.'</p>
+                        <img src= https://firebasestorage.googleapis.com/v0/b/machine-54632.appspot.com/o/pruebas.jpg?alt=media&token=3cb62e51-e8c0-42a2-a143-f85014f45957 alt=unodepiera <img/>
+                         </body></html>',
                         'text' => 'Congratulations, {{name}}! You just sent your very first mailing!',
                     ],
                     'substitution_data' => ['name' => 'YOUR_FIRST_NAME'],
