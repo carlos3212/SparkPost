@@ -36,7 +36,7 @@ $plantilla=$_POST['plantilla'];
 
     if ($resultado === true) {
         # Redireccionar a la lista
-        header("Location: http://localhost:8080/sparkpost/insertarUsuario.php");
+        header("Location: insertarUsuario.php");
     } else {
         echo "Algo salió mal. Por favor verifica que la tabla exista";
     }
