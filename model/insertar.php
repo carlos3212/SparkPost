@@ -38,7 +38,7 @@ $resultado = $sentencia->execute([$email, $password, $rol, $usuario]); # Pasar e
 
 if ($resultado === true) {
     # Redireccionar a la lista
-	header("Location: http://localhost:8080/sparkpost/datos_login.php");
+	header("Location: ../datos_login.php");
 } else {
     echo "Algo salió mal. Por favor verifica que la tabla exista";
 }

@@ -35,7 +35,7 @@ $resultado = $sentencia->execute([$nombre_campana]); # Pasar en el mismo orden d
 
 if ($resultado === true) {
     # Redireccionar a la lista
-	header("Location: http://localhost:8080/sparkpost/campañas.php");
+	header("Location: ../campañas.php");
 } else {
     echo "Algo salió mal. Por favor verifica que la tabla exista";
 }
