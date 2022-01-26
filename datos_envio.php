@@ -41,7 +41,7 @@ $envios = $sentenciae->fetchAll(PDO::FETCH_OBJ);
                         <th>Titulo Plantilla</th>
 						<th>ID Campaña</th>
 						<th>ID PLantilla</th>
-						<th>Editar</th>
+						
 						<th>Eliminar</th>
 
 					</tr>
@@ -59,7 +59,7 @@ $envios = $sentenciae->fetchAll(PDO::FETCH_OBJ);
 							<td><?php echo $envio->tipo_campana ?></td>
 							<td><?php echo $envio->tipo_plantilla ?></td>
 						
-							<td><a class="btn btn-warning" href="<?php echo "editar.php?id=" . $envio->id_envio?>">Editar 📝</a></td>
+							
 							<td><a class="btn btn-danger" href="<?php  echo "eliminarEnvio.php?id=" . $envio->id_envio?>">Eliminar 🗑️</a></td>
 						</tr>
 					<?php } ?>

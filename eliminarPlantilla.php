@@ -1,6 +1,6 @@
  
 <?php
- include_once './seguridad.php';
+ //include_once './seguridad.php';
  
 if (!isset($_GET["id"])) {
     exit();
@@ -11,7 +11,7 @@ include_once "./config/base_de_datos.php";
 $sentencia = $base_de_datos->prepare("DELETE FROM plantilla WHERE id_plantilla = ?;");
 $resultado = $sentencia->execute([$id]);
 if ($resultado === true) {
-    header("Location: Location: http://localhost:8080/sparkpost/plantilla.php");
+    header("Location: plantilla.php");
 } else {
     echo "Algo salió mal";
 }

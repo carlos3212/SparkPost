@@ -1,11 +1,6 @@
   
 <?php 
 session_start();
-include_once "encabezado.php";
-include_once "./conexion.php";
-include_once "./config/base_de_datos.php";
-
-
 $rol="1";
 $usuario =$_SESSION['usuario'];
 $pass =$_SESSION['pass'] ;
@@ -14,14 +9,9 @@ $ps= $_SESSION['pswbase'];
 $rols= $_SESSION['rolbase']; 
 if ($usuario == $us && $pass == $ps &&  $rol == $rols)
 {
-
-
-
-   
-	
-
-
-
+	include_once "encabezado.php";
+	include_once "./conexion.php";
+	include_once "./config/base_de_datos.php";	
 $sentencia = $base_de_datos->query("select id_usuario, nombre,apellido, correo, plantilla from usuarios");
 $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 ?>

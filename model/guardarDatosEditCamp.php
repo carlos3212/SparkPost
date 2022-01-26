@@ -14,8 +14,8 @@ en donde se editan
 
 #Salir si alguno de los datos no está presente
 if (
-    !isset($_POST["nombre"]) ||
-    !isset($_POST["correo"]) 
+    
+    !isset($_POST["nombre"]) 
     
 ) {
     exit();
@@ -27,14 +27,11 @@ $id_usuario = $_POST["id"];
 echo $id_usuario;
 $nombre = $_POST["nombre"];
 echo $nombre;
-$apellido = $_POST["apellido"];
-echo $apellido;
-$correo = $_POST["correo"];
-echo $correo;
-$sentencia = $base_de_datos->prepare("UPDATE usuarios SET nombre=?, apellido=?, correo=? WHERE id_usuario = $id_usuario;");
-$resultado = $sentencia->execute([$nombre, $apellido ,$correo]); # Pasar en el mismo orden de los ?
+
+$sentencia = $base_de_datos->prepare("UPDATE campana SET nombre_campana=? WHERE id_campana = $id_usuario;");
+$resultado = $sentencia->execute([$nombre]); # Pasar en el mismo orden de los ?
 if ($resultado === true) {
-    header("Location: ../datos.php");
+    header("Location: ../campañas.php");
 } else {
     echo "Algo salió mal. Por favor verifica que la tabla exista, así como el ID del usuario";
 }

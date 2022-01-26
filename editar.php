@@ -1,29 +1,27 @@
 <?php 
-   //include_once './seguridad.php'
+session_start();
+$rol="1";
+$usuario =$_SESSION['usuario'];
+$pass =$_SESSION['pass'] ;
+$us= $_SESSION['usbase'];
+$ps= $_SESSION['pswbase'];
+$rols= $_SESSION['rolbase']; 
+if ($usuario == $us && $pass == $ps &&  $rol == $rols)
+{
+	include_once "encabezado.php";
+	include_once "./conexion.php";
+	include_once "./config/base_de_datos.php";	
 
-?>
-<?php //if ($_SESSION['rol']==1)
-//session_unset();
-//session_destroy();
-?>
-
-<?php
 
 
-if (!isset($_GET["id"])) {
-    exit();
-}
+
 
 $id_usuario = $_GET["id"];
 include_once "./config/base_de_datos.php";
-$sentencia = $base_de_datos->prepare("SELECT id_usuario, nombre, apellido ,correo	 FROM usuarios WHERE id_usuario = ?;");
-$sentencia->execute([$id_usuario]);
+$sentencia = $base_de_datos->prepare("SELECT id_usuario, nombre, apellido ,correo	 FROM usuarios WHERE id_usuario = '$id_usuario';");
+$sentencia->execute();
 $usuario = $sentencia->fetchObject();
-if (!$usuario) {
-    #No existe
-    echo "¡No existe alguna usuario con ese ID!";
-    exit();
-}
+
 
 #Si la usuario existe, se ejecuta esta parte del código
 ?>
@@ -52,3 +50,11 @@ if (!$usuario) {
 		</form>
 	</div>
 </div>
+<?php
+
+}else{
+    echo "fail";
+    header ('Location: index.php');
+  
+}
+?>

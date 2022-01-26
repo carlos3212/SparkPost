@@ -55,7 +55,7 @@ $logins = $sentencial->fetchAll(PDO::FETCH_OBJ);
                             <td><?php echo $login->rol ?></td>
                             <td><?php echo $login->usuario ?></td>
 						
-							<td><a class="btn btn-warning" href="<?php echo "editar.php?id=" . $login->id?>">Editar 📝</a></td>
+							<td><a class="btn btn-warning" href="<?php echo "editarUsarios.php?id=" . $login->id?>">Editar 📝</a></td>
 							<td><a class="btn btn-danger" href="<?php  echo "eliminarLogin.php?id=" . $login->id?>">Eliminar 🗑️</a></td>
 						</tr>
 					<?php } ?>
