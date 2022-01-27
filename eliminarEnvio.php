@@ -11,7 +11,7 @@ include_once "./config/base_de_datos.php";
 $sentencia = $base_de_datos->prepare("DELETE FROM envio WHERE id_envio = ?;");
 $resultado = $sentencia->execute([$id]);
 if ($resultado === true) {
-    header("Location: datos_envio.php");
+    header("Location: ./datos_envio.php");
 } else {
     echo "Algo salió mal";
 }

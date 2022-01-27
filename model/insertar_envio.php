@@ -36,7 +36,7 @@ $resultado = $sentencia->execute([$tipo_campana, $tipo_plantilla]); # Pasar en e
 
 if ($resultado === true) {
     # Redireccionar a la lista
-	header("Location: http://localhost:8080/sparkpost/datos_envio.php");
+	header("Location: ../datos_envio.php");
 } else {
     echo "Algo salió mal. Por favor verifica que la tabla exista";
 }

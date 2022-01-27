@@ -85,12 +85,16 @@
             try {
                 //Creamos el response.
                 $response = $create->wait();
-                echo $response->getStatusCode()."\n";
-                print_r($response->getBody())."\n";
+                //echo $response->getStatusCode()."\n";
+                //print_r($response->getBody())."\n";
+                
+                header("Location: ./exito.php");
 
+                
             } catch (\Exception $e) {
                 echo $e->getCode();
                 echo $e->getMessage();
+
             
             }
 

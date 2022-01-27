@@ -1,5 +1,14 @@
 <?php
- include_once "encabezado.php" ;
+session_start();
+$rol="1";
+$usuario =$_SESSION['usuario'];
+$pass =$_SESSION['pass'] ;
+$us= $_SESSION['usbase'];
+$ps= $_SESSION['pswbase'];
+$rols= $_SESSION['rolbase']; 
+if ($usuario == $us && $pass == $ps &&  $rol == $rols)
+{
+include_once "encabezado.php";
 
 include_once "config/base_de_datos.php";
 
@@ -36,9 +45,16 @@ $plantilla=$_POST['plantilla'];
 
     if ($resultado === true) {
         # Redireccionar a la lista
-        header("Location: insertarUsuario.php");
+        
+        header("Location: ./datos.php");
     } else {
         echo "Algo salió mal. Por favor verifica que la tabla exista";
     }
+  
+}else{
+    echo "fail";
+    header ('Location: index.php');
+  
+}
     
 ?>

@@ -102,7 +102,9 @@ include_once "encabezado.php";
                         </div>
                         <div class="form-group">
                             <label for="mensaje">Archivo</label>
-                            <p style="border: ridge #9c9c9c 1px; background-color: #ffffff ;padding: 20px; -webkit-border-radius: 5px;"><?php echo $usuario -> documento ?></p>
+                            <p style="border: ridge #9c9c9c 1px; background-color: #ffffff ;padding: 
+                            20px; -webkit-border-radius: 5px;">
+                            <?php echo "<img src='".$usuario->documento."'width=200 height=200  />"; ?></p>
                      
                            
                         </div>

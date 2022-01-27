@@ -15,30 +15,29 @@ include_once "./config/base_de_datos.php";
 $sentencia = $base_de_datos->query("select id_usuario, nombre, correo from usuarios");
 $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
 ?>
-
-    <!-- Begin Page Content -->
-    <div class="container-fluid">
-
-        <!-- Page Heading -->
-        <h1> Cargar Contacto </h1>
-        <div class="row">
-  <div chost:8080/sparkpostlass="col-md-12 offset-md-3">
-  <form action="files.php" method="post" enctype="multipart/form-data" id="filesForm">
+     
+     <div>
+         <h1>Cargar CSV</h1>
+    <form action="files.php" method="post" enctype="multipart/form-data" id="filesForm">
     <div class="col-md-4 col-md-offset-4">
-        <input class="form-control" type="file" id="file" name="file[]" multiple>
+        <input class="form-control" type="file" name="file[]" multiple>
         <button type="button" onclick="subir()" class="btn btn-primary form-control" >Cargar</button>
     </div>
 </form>
-  </div>
-</div>
+    </div>
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		
+        <!-- Page Heading -->
+       
         <h1>Agregar Contacto</h1>
         <form action="insertCSV.php" method="POST">
 
         <label for="plantilla">Selecionar CSV</label>      
-             <input type="hidden" name="nombre" value="<?php echo $paraNombre->nombre; ?>">
-                
-             <div class="form-group">
-                       
+             <input type="hidden" name="nombre" value="<?php echo $paraNombre->nombre; ?>">  
+             <div class="form-group">      
              <select name="nombre" id = "nombre" class="form-control"> 
         <?php
         
@@ -50,94 +49,67 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
             while($row=$data->fetch(PDO::FETCH_ASSOC)){
                 echo '<option value="'.$row['nombre'].'">'.$row['nombre'].'</option>';
                 //print_r($row); 
-            }
-            
-            
+            }          
             
         ?>
          </select>	
          <label for="plantilla">Selecionar plantilla</label>
-         <input type="hidden" name="plantilla" value="<?php echo $paraPlantilla->plantilla; ?>">
+         <input type="hidden" name="plantilla" value="<?php echo $paraPlantilla->plantilla; ?>"/>
+         
+         
                 
                 <div class="form-group">
                           
                 <select name="plantilla" id = "plantilla" class="form-control"> 
            <?php
-           
            include_once './config/base_de_datos.php';
            $query = "select id_plantilla, titulo from plantilla";
                $data = $base_de_datos->prepare($query);    // Prepare query for execution
                $data->execute();// Execute (run) the query
-           
                while($row=$data->fetch(PDO::FETCH_ASSOC)){
                    echo '<option value="'.$row['id_plantilla'] .'">'.$row['titulo'].'</option>';
                    //print_r($row); 
-               }
-               
-               
+               }            
                
            ?>
             </select>	
          
-     
-        
-        
-       
-            
-        
                     </div>
                    
                     <button type="submit" class="btn btn-success">Guardar</button>
                     
                             
                      </div> 
-           
-		
-            <!--FOrmulario de registro-->
-			<!--<form action="./model/insertar.php" method="POST"> 
-                <div class="form-group">
-				<label for="nombre">Nombre</label>
-				<input required name="nombre" type="text" id="nombre" placeholder="Nombre de Usuario" class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="edad">Correo</label>
-				<input required name="correo" type="text" id="correo" placeholder="Correo" class="form-control">
-			</div>
-           
-			<button type="submit" class="btn btn-success">Guardar</button>
-			<a href="./listar.php" class="btn btn-warning">Ver todas</a> -->
-            
+        </form>         
                          
         
 
         
     </div>
     
+    
    
     <!-- /.container-fluid -->
     
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    function subir()
-    {
+function subir()
+{
 
-        var Form = new FormData($('#filesForm')[0]);
-        $.ajax({
+    var Form = new FormData($('#filesForm')[0]);
+    $.ajax({
 
-            url: "files.php",
-            type: "post",
-            data : Form,
-            processData: false,
-            contentType: false,
-            success: function(data)
-            {
-              
-                alert('Archivos Agregados!');
-              
-
-            }
-        });
-    }
+        url: "files.php",
+        type: "post",
+        data : Form,
+        processData: false,
+        contentType: false,
+        success: function(data)
+        {
+            alert('Archivos Agregados!');
+        }
+    });
+}
 
 </script>
 
