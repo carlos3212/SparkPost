@@ -22,7 +22,7 @@ $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         <!-- Page Heading -->
         <h1> Cargar Contacto </h1>
         <div class="row">
-  <div class="col-md-12 offset-md-3">
+  <div chost:8080/sparkpostlass="col-md-12 offset-md-3">
   <form action="files.php" method="post" enctype="multipart/form-data" id="filesForm">
     <div class="col-md-4 col-md-offset-4">
         <input class="form-control" type="file" id="file" name="file[]" multiple>

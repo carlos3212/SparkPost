@@ -21,14 +21,21 @@ if ($usuario == $us && $pass == $ps &&  $rol == $rols)
     <div class="container-fluid">
     <h1>Cargar</h1>
         <div class="row">
-  <div class="col-md-12 offset-md-3">
+        <div>
+            Upload Files<br />
+            <input type="file" id="files" multiple /><br /><br />
+            <button id="send">Upload</button>
+            <p id="uploading"></p>
+            <progress value="0" max="100" id="progress"></progress>
+         </div>
+  <!--<div class="col-md-12 offset-md-3">
   <form action="imagen.php" method="post" enctype="multipart/form-data" id="filesForm">
     <div class="col-md-4 col-md-offset-4">
         <input class="form-control" type="file" id="file" name="file[]" multiple>
         <button type="button" onclick="subir()" class="btn btn-primary form-control" >Cargar</button>
     </div>
 </form>
-  </div>
+  </div>-->
 </div>
 
         <!-- Page Heading -->
@@ -47,32 +54,12 @@ if ($usuario == $us && $pass == $ps &&  $rol == $rols)
 				<label for="mensaje">Mensaje</label>
 				<textarea required name="mensaje" type="text" id="mensaje" placeholder="Mensaje" class="form-control"></textarea>
 			</div>
-            <!--IMagen
-            <div class="form-group">
-				<label for="documento">Documento</label>
+      <div class="form-group">
+				<label for="mensaje">Documento</label>
 				<input required name="documento" type="text" id="documento" placeholder="documento" class="form-control">
-			</div>-->
-            <label for="documento">Documento</label>
-                                
-                    <input type="hidden" name="nombre" value="<?php echo $paraPlantilla->nombre; ?>">
-                   
-                     <div class="form-group">
-                       
-                        <select name="nombre" id = "nombre" class="form-control"> 
-                        <?php
-                        
-                        include_once './config/base_de_datos.php';
-                        $query = "select id_imagen, nombre from cargarimg";
-                            $data = $base_de_datos->prepare($query);    // Prepare query for execution
-                            $data->execute();// Execute (run) the query
-                        
-                            while($row=$data->fetch(PDO::FETCH_ASSOC)){
-                                echo '<option value="'.$row['nombre'].'">'.$row['nombre'].'</option>';
-                                //print_r($row); 
-                            }
-                            
-                        ?>
-                        </select>	
+			</div>
+            
+     </select>	
                  
                    
             <!-- form-group -->
@@ -136,7 +123,94 @@ aria-hidden="true">
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Custom scripts for all pages-->
+<!-- Agregar firebase-->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+
+<script>
+// Your web app's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyBOV5DMuyuvaPKA3ZpICPB6iyDitGC3QoE",
+  authDomain: "mlml-a0a87.firebaseapp.com",
+  databaseURL: "https://mlml-a0a87.firebaseio.com",
+  projectId: "mlml-a0a87",
+  storageBucket: "mlml-a0a87.appspot.com",
+  messagingSenderId: "334815235064",
+  appId: "1:334815235064:web:fa0ab89e8cd72c48bc640d"
+ 
+  
+  
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>
+var files = [];
+document.getElementById("files").addEventListener("change", function(e) {
+  files = e.target.files;
+  for (let i = 0; i < files.length; i++) {
+    console.log(files[i]);
+  }
+});
+
+document.getElementById("send").addEventListener("click", function() {
+  //checks if files are selected
+  if (files.length != 0) {
+    //Loops through all the selected files
+    for (let i = 0; i < files.length; i++) {
+      //create a storage reference
+      var storage = firebase.storage().ref(files[i].name);
+      //upload file
+      var upload = storage.put(files[i]);
+      //update progress bar
+      upload.on(
+        "state_changed",
+        function progress(snapshot) {
+          var percentage =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          document.getElementById("progress").value = percentage;
+        },
+
+        function error() {
+          alert("error uploading file");
+        },
+
+        function complete() {
+          document.getElementById(
+            "uploading"
+          ).innerHTML += `${files[i].name} upoaded <br />`;
+        }
+      );
+    }
+  } else {
+    alert("No file chosen");
+  }
+});
+function getFileUrl(filename) {
+  //create a storage reference
+  var storage = firebase.storage().ref(filename);
+  //get file url
+  storage
+    .getDownloadURL()
+    .then(function(url) {
+      console.log(url);
+    })
+    .catch(function(error) {
+      console.log("error encountered");
+    });
+}
+getFileUrl('pruebas.jpg');
+</script>
+<!-- Fin firebase-->
+
+
+
+
+<!-- Custom scripts for all pages
 <script src="js/sb-admin-2.min.js"></script>
 <script type="text/javascript">
 
@@ -162,6 +236,7 @@ aria-hidden="true">
     }
 
 </script>
+-->
 </body>
 
 </html>

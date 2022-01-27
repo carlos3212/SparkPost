@@ -2,20 +2,19 @@
 
   
   
-<?php include_once "encabezado.php";
- //include_once './seguridad.php';
+<?php 
+session_start();
+$rol="1";
+$usuario =$_SESSION['usuario'];
+$pass =$_SESSION['pass'] ;
+$us= $_SESSION['usbase'];
+$ps= $_SESSION['pswbase'];
+$rols= $_SESSION['rolbase']; 
+if ($usuario == $us && $pass == $ps &&  $rol == $rols)
+{
+include_once "encabezado.php";
 
- ?>
- 
- <?php // if ($_SESSION['rol']==2)
- //session_unset();
- //session_destroy();
- ?>
 
-    <!-- End of Topbar -->
-
-     <!-- Begin Page Content -->
-    <?php 
     $id_envio = $_POST['id_envio'];
     
 
@@ -102,17 +101,21 @@
                            
                         </div>
                         <div class="form-group">
-                            <label for="correo">Archivo</label>
-                            <p style="border: ridge #9c9c9c 1px; background-color: #ffffff ;padding: 5px; -webkit-border-radius: 5px;">
+                            <label for="mensaje">Archivo</label>
+                            <p style="border: ridge #9c9c9c 1px; background-color: #ffffff ;padding: 20px; -webkit-border-radius: 5px;"><?php echo $usuario -> documento ?></p>
+                     
+                           
+                        </div>
                              
                             
 
                             <?php 
-                            $Base64Img = "data:image/png;base64,$usuario->documento";               
+                            /*$Base64Img = "data:image/png;base64,$usuario->documento";               
                             
                             echo "<img src= $Base64Img alt='unodepiera'/>";
                              //$imag= $usuario->documento;
-                            //echo "<img src=$imag alt=''width='50%' height='50%' >"; ?></p>
+                            //echo "<img src=$imag alt=''width='50%' height='50%' >";*/ ?></p>
+
                      
                         </div>
 
@@ -201,3 +204,10 @@ aria-hidden="true">
 <script src="js/sb-admin-2.min.js"></script>
 
 
+<?php
+}else{
+    echo "fail";
+    header ('Location: index.php');
+  
+}
+?>

@@ -31,13 +31,14 @@
    //Base usuarios
    include_once "./config/base_de_datos.php";
         
-   $sentencia = $base_de_datos->query("Select campana.nombre_campana,
+   $sentencia = $base_de_datos->query("SELECT campana.nombre_campana, 
    plantilla.titulo,plantilla.asunto,plantilla.mensaje,plantilla.documento,
-   usuarios.nombre, usuarios.correo, envio.id_envio, 
-   envio.tipo_campana, envio.tipo_plantilla,cargarimg.nombre as imagen
-   From campana, plantilla, usuarios, envio, cargarimg
-   Where envio.id_envio = $id_envio and campana.id_campana = $tipo_campana
-   and plantilla.id_plantilla = $tipo_plantilla and usuarios.plantilla = $tipo_plantilla");
+   usuarios.nombre, usuarios.correo, envio.id_envio,
+   envio.tipo_campana, envio.tipo_plantilla
+   from campana,plantilla,usuarios,envio
+   where campana.id_campana =$tipo_campana and plantilla.id_plantilla = $tipo_plantilla
+   and usuarios.plantilla =$tipo_plantilla
+   and envio.id_envio = $id_envio");
    $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);   
 
    foreach($usuarios as $usuario ){
@@ -57,9 +58,9 @@
                //Creamos el envio de correos.
             foreach($usuarios as $usuario){
                     
-                if(file_exists($usuario->imagen) ){
-                    $imagen="/.'$usuario->imagen.'";
-                }
+               // if(file_exists($usuario->imagen) ){
+                 //   $imagen="/.'$usuario->imagen.'";
+                //}
                         
                              
                 $create = $sparky->transmissions->post([
@@ -73,7 +74,7 @@
                         'html' => '<html>
                         <body>
                         <p>' .$usuario->mensaje.'</p>
-                        <img src= https://firebasestorage.googleapis.com/v0/b/machine-54632.appspot.com/o/pruebas.jpg?alt=media&token=3cb62e51-e8c0-42a2-a143-f85014f45957 alt=unodepiera <img/>
+                        <img src= '.$usuario->documento.' alt=imagen width="600" height="600" <img/>
                          </body></html>',
                         'text' => 'Congratulations, {{name}}! You just sent your very first mailing!',
                     ],
